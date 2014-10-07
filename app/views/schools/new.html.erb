@@ -1,0 +1,17 @@
+<h2>New School</h2>
+
+<%= form_for @school do |f| %>
+	<div>
+		<%= f.label :username %><Br>
+		<%= f.text_field :username %>
+	</div>
+	<div>
+		<%= f.label :password %><Br>
+		<%= f.text_field :password %>
+	</div>
+	<div>
+		<%= f.label :school_name %><Br>
+		<%= f.text_field :school_name %>
+	</div>
+	<%= f.submit "Add School" %>
+<% end %>

@@ -1,0 +1,7 @@
+<h2><%= @school.school_name %></h2>
+
+<ul>
+	<% @school.competitors.each do |c| %>
+	  <li><%= c.first_name %> <%= c.last_name %></li>
+	<% end %>
+</ul>

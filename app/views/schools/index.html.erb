@@ -1,0 +1,9 @@
+<h2>All Schools</h2>
+
+<ul>
+<% @schools.each do |s| %>
+  <li><%= s.school_name %> - <%= link_to "Show", school_path(s) %>,  <%= link_to "Delete", school_path(s), method: :delete, confirm: "Are you sure?" %></li>
+<% end %>
+</ul>
+
+<p><%= link_to "Add a school", new_school_path %></p>
