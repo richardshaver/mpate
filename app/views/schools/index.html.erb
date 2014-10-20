@@ -2,7 +2,7 @@
 
 <ul>
 <% @schools.each do |s| %>
-  <li><%= s.school_name %> - <%= link_to "Show", school_path(s) %>,  <%= link_to "Delete", school_path(s), method: :delete, confirm: "Are you sure?" %></li>
+  <li><%= s.school_name %> - <%= link_to "Show", school_path(s) %>, <%= link_to "Edit", edit_school_path(s) %>,  <%= link_to "Delete", school_path(s), method: :delete, confirm: "Are you sure?" %></li>
 <% end %>
 </ul>
 
