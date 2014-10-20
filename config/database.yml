@@ -34,5 +34,5 @@ production:
   encoding: unicode
   database: d5rgqbdl4tp78n
   pool: 5
-  username: <%= ENV['DATABASE_USER'] %>
-  password: <%= ENV['DATABASE_PASSWORD'] %>
+  username: arcane-harbor-1233
+  password: <%= ENV['HEROKU_POSTGRESQL_BLACK'] %>
