@@ -1,3 +1,5 @@
 Heroku Remote: git@heroku.com:arcane-harbor-1233.git
 
 Heroku URL: http://arcane-harbor-1233.herokuapp.com/
+
+More info on Git: http://www.youtube.com/watch?v=24NGu1vGBiw&list=UU0i9WEARodeE_qrl0BFbdaw
