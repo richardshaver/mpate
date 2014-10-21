@@ -1,1 +1,2 @@
-git@heroku.com:arcane-harbor-1233.git let's put some more stuff at the end of the file.
+git@heroku.com:arcane-harbor-1233.git I'm adding stuff to the end of this and oping that it won't auto-merge.
+
