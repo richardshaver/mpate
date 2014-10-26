@@ -1,7 +1,21 @@
 <h2><%= @school.school_name %></h2>
 
+<p><strong>School Name:</strong> <%= @school.school_name %></p>
+<p><strong>Username:</strong> <%= @school.username %></p>
+<p><strong>Password:</strong> <%= @school.password %></p>
+<p><strong>Address Line 1:</strong> <%= @school.address_line_1 %></p>
+<p><strong>Address Line 2:</strong> <%= @school.address_line_2 %></p>
+<p><strong>City:</strong> <%= @school.city %></p>
+<p><strong>State:</strong> <%= @school.state %></p>
+<p><strong>Zip Code:</strong> <%= @school.zip %></p>
+<p><strong>Phone Number:</strong> <%= @school.phone %></p>
+<p><strong>Teachers Attending:</strong> <%= @school.teachers_attending %></p>
+
+ 
 <ul>
 	<% @school.competitors.each do |c| %>
 	  <li><%= c.first_name %> <%= c.last_name %></li>
 	<% end %>
 </ul>
+
+<p><%= link_to "Back", schools_path %></p>

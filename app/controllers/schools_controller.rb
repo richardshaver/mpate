@@ -3,15 +3,8 @@ class SchoolsController < ApplicationController
   	@schools = School.all
   end
 
-  def show
-  	@school = School.find(params[:id])
-  end
-
   def new
   	@school = School.new
-  end
-
-  def edit
   end
 
   def create
@@ -23,7 +16,21 @@ class SchoolsController < ApplicationController
   	end
   end
 
+  def show
+    @school = School.find(params[:id])
+  end
+
+  def edit
+    @school = School.find(params[:id])
+  end
+
   def update
+    @school = School.find(params[:id])
+    if @school.update(model_params)
+      redirect_to school_path(@school)
+    else
+      render :edit
+    end
   end
 
   def destroy

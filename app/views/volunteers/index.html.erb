@@ -1,0 +1,9 @@
+<h1>Volunteers</h1>
+
+<p><%= link_to "Add a Volunteer", new_volunteer_path%></p>
+
+<ul>
+	<% @volunteers.each do |volunteer| %>
+		<li><%= volunteer.full_name %> - <%= link_to "Show", volunteer_path(volunteer) %>, <%= link_to "Edit", edit_volunteer_path(volunteer) %>,  <%= link_to "Delete", volunteer_path(volunteer), method: :delete, confirm: "Are you sure?" %></li>
+	<%end%>
+</ul>

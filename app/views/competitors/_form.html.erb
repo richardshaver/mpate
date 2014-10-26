@@ -1,0 +1,45 @@
+<%= form_for @competitor do |f| %>
+	<div>
+		<%=f.label:first_name %><br>
+		<%=f.text_field:first_name %>
+	</div>
+	<div>
+		<%=f.label:last_name %><br>
+		<%=f.text_field:last_name %>
+	</div>
+	<div>
+		<%=f.label:address_line_1 %><br>
+		<%=f.text_field:address_line_1 %>
+	</div>
+	<div>
+		<%=f.label:address_line_2 %><br>
+		<%=f.text_field:address_line_2 %>
+	</div>
+	<div>
+		<%=f.label:city %><br>
+		<%=f.text_field:city %>
+	</div>
+	<div>
+		<%=f.label:state %><br>
+		<%=f.text_field:state %>
+	</div>
+	<div>
+		<%=f.label:zip %><br>
+		<%=f.number_field:zip %>
+	</div>
+		<div>
+		<%=f.label:grade, "Junior or Senior" %><br>
+		<%=f.text_field:grade %>
+	</div>
+	<div>
+		<%=f.label:email %><br>
+		<%=f.email_field:email %>
+	</div>
+
+	<% if @competitor.id %>
+		<%= f.submit "Save Changes" %>
+	<% else %>
+		<%= f.submit "Add Competitor" %>
+	<% end %>
+<%end%>
+

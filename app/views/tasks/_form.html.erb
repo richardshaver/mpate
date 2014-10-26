@@ -1,0 +1,14 @@
+<%= form_for @task do |f| %>
+	<div>
+		<%=f.label:name %><br>
+		<%=f.text_field:name %>
+	</div>
+
+	<% if @task.id %>
+		<%= f.submit "Save Changes" %>
+	<% else %>
+		<%= f.submit "Add Task" %>
+	<% end %>
+
+
+<%end%>

@@ -1,0 +1,9 @@
+<h1>Competitors</h1>
+
+<p><%= link_to "Add a Competitor", new_competitor_path%></p>
+
+<ul>
+	<% @competitors.each do |competitor| %>
+		<li><%= competitor.full_name %> - <%= link_to "Show", competitor_path(competitor) %>, <%= link_to "Edit", edit_competitor_path(competitor) %>,  <%= link_to "Delete", competitor_path(competitor), method: :delete, confirm: "Are you sure?" %></li>
+	<%end%>
+</ul>

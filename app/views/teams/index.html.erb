@@ -1,0 +1,9 @@
+<h1>Teams</h1>
+
+<p><%= link_to "Add a Team", new_team_path%></p>
+
+<ul>
+	<% @teams.each do |team| %>
+		<li><%= team.team_name %> - <%= link_to "Show", team_path(team) %>, <%= link_to "Edit", edit_team_path(team) %>,  <%= link_to "Delete", team_path(team), method: :delete, confirm: "Are you sure?" %></li>
+	<%end%>
+</ul>

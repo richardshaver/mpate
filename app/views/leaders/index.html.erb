@@ -1,0 +1,9 @@
+<h1>Leaders</h1>
+
+<p><%= link_to "Add a Leader", new_leader_path%></p>
+
+<ul>
+	<% @leaders.each do |leader| %>
+		<li><%= leader.full_name %> - <%= link_to "Show", leader_path(leader) %>, <%= link_to "Edit", edit_leader_path(leader) %>,  <%= link_to "Delete", leader_path(leader), method: :delete, confirm: "Are you sure?" %></li>
+	<%end%>
+</ul>

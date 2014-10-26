@@ -1,6 +1,18 @@
 Mpate::Application.routes.draw do
   
+  resources :teams
+
+  resources :managers
+
+  resources :tasks
+
+  resources :volunteers
+
+  resources :leaders
+
   resources :schools
+
+  resources :competitors
   
   root "main#index"
   # The priority is based upon order of creation: first created -> highest priority.
