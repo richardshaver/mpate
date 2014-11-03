@@ -42,7 +42,7 @@ class SchoolsController < ApplicationController
   def model_params
   	params.require(:school).permit(
   		:school_name,
-  		:username,
+  		:user_name,
   		:password,
   		:address_line_1,
   		:address_line_2,
