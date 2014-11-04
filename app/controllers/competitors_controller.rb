@@ -1,4 +1,5 @@
 class CompetitorsController < ApplicationController
+  before_action :set_schools_and_teams, except: [:index, :show, :destroy]
 
 	def index
 		@competitors=Competitor.all
@@ -40,6 +41,10 @@ class CompetitorsController < ApplicationController
   	redirect_to competitors_path
   end
 
+  def set_schools_and_teams
+    @schools = School.all.order(school_name: :asc)
+    @teams = Team.all.order(:color, :number)
+  end
 
 	def model_params
 		params.require(:competitor).permit(
@@ -51,7 +56,9 @@ class CompetitorsController < ApplicationController
       		:state,
       		:zip,
       		:grade,
-      		:email
+      		:email,
+          :school_id,
+          :team_id
  			)
 	end
 

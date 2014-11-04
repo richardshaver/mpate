@@ -45,7 +45,7 @@ class TeamsController < ApplicationController
 			:number,
 			:color,
 			:score_one,
-			:score_twos,
+			:score_two,
 			:score_three,
 			:score_four
 			)

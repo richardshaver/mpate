@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141103235330) do
+ActiveRecord::Schema.define(version: 20141104012837) do
 
   create_table "competitors", force: true do |t|
     t.string   "first_name"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20141103235330) do
     t.integer  "school_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "team_id"
   end
 
   create_table "leaders", force: true do |t|
@@ -88,6 +89,7 @@ ActiveRecord::Schema.define(version: 20141103235330) do
     t.string   "ref_instructor"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "task_id"
   end
 
 end

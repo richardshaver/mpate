@@ -9,5 +9,6 @@
 <p><strong>Zip Code:</strong> <%= @competitor.zip %></p>
 <p><strong>Grade:</strong> <%= @competitor.grade %></p>
 <p><strong>Email:</strong> <%= @competitor.email %></p>
-
+<p><strong>School:</strong> <%= @competitor.school.school_name %></p>
+<p><strong>Team:</strong> <%= @competitor.team.team_name %></p>
 <p><%= link_to "Back", competitors_path %></p>

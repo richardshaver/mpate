@@ -17,7 +17,24 @@
 		<%=f.label:color %><br>
 		<%=f.text_field:color %>
 	</div>
-
+	<% if @team.id %>
+		<div>
+			<%= f.label :score_one %>
+			<%= f.number_field :score_one %>
+		</div>
+		<div>
+			<%= f.label :score_two %>
+			<%= f.number_field :score_two %>
+		</div>
+		<div>
+			<%= f.label :score_three %>
+			<%= f.number_field :score_three %>
+		</div>
+		<div>
+			<%= f.label :score_four %>
+			<%= f.number_field :score_four %>
+		</div>
+	<% end %>
 	<% if @team.id %>
 		<%= f.submit "Save Changes" %>
 	<% else %>

@@ -6,6 +6,7 @@ class VolunteersController < ApplicationController
 
 	def new
 		@volunteer=Volunteer.new
+    @tasks = Task.all.order(name: :asc)
 	end
 
 	def create
@@ -13,6 +14,7 @@ class VolunteersController < ApplicationController
 		if @volunteer.save
 			redirect_to volunteers_path
 		else
+      @tasks = Task.all.order(name: :asc)
 			render :new
 		end
 	end
@@ -23,6 +25,7 @@ class VolunteersController < ApplicationController
 
   def edit
     @volunteer = Volunteer.find(params[:id])
+    @tasks = Task.all.order(name: :asc)
   end
 
   def update
@@ -30,6 +33,7 @@ class VolunteersController < ApplicationController
     if @volunteer.update(model_params)
       redirect_to volunteer_path(@volunteer)
     else
+      @tasks = Task.all.order(name: :asc)
       render :edit
     end
   end
@@ -43,11 +47,12 @@ class VolunteersController < ApplicationController
 	def model_params
 		params.require(:volunteer).permit(
 			:msu_id,
-            :first_name,
-            :last_name,
-            :email,
-            :phone,
-       		:ref_instructor
+      :first_name,
+      :last_name,
+      :email,
+      :phone,
+   		:ref_instructor,
+      :task_id
 			)
 	end
 end

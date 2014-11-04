@@ -34,6 +34,12 @@
 		<%=f.text_field:ref_instructor %>
 	</div>
 
+	<h5>Assign a Task</h5>
+	<div>
+		<%= f.label :task_id, "Task Name" %><br>
+		<%= collection_select(:volunteer, :task_id, @tasks, :id, :name, prompt: "Select A Task") %> 
+	</div>
+
 	<% if @volunteer.id %>
 		<%= f.submit "Save Changes" %>
 	<% else %>

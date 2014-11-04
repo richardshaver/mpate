@@ -11,7 +11,7 @@
 <p><strong>Phone Number:</strong> <%= @school.phone %></p>
 <p><strong>Teachers Attending:</strong> <%= @school.teachers_attending %></p>
 
- 
+<h3>Students From This School</h3> 
 <ul>
 	<% @school.competitors.each do |c| %>
 	  <li><%= c.first_name %> <%= c.last_name %></li>

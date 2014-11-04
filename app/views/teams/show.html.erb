@@ -3,4 +3,19 @@
 <p><strong>Team Number:</strong> <%= @team.number %></p>
 <p><strong>Team Color:</strong> <%= @team.color %></p>
 
+<h4>Scores:</h4>
+<p><strong>Score 1:</strong> <%= @team.score_one || "Not entered" %></p>
+<p><strong>Score 2:</strong> <%= @team.score_two || "Not entered" %></p>
+<p><strong>Score 3:</strong> <%= @team.score_three || "Not entered" %></p>
+<p><strong>Score 4:</strong> <%= @team.score_four || "Not entered" %></p>
+<br>
+<p><strong>Total Score:</strong> <%= @team.total_score %></p>
+
+<h3>Team Members</h3>
+<ul>
+	<% @team.competitors.each do |c| %>
+		<li><%= c.full_name %></li>
+	<% end %>
+</ul>
+
 <p><%= link_to "Back", teams_path %></p>
