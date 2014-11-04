@@ -1,4 +1,14 @@
 <%= form_for @task do |f| %>
+	<% if @task.errors.any? %>
+		<div id="errors">
+			<h5>Something Went Wrong</h5>
+			<ul>
+				<% @task.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
 	<div>
 		<%=f.label:name %><br>
 		<%=f.text_field:name %>

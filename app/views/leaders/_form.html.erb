@@ -1,4 +1,14 @@
 <%= form_for @leader do |f| %>
+	<% if @leader.errors.any? %>
+		<div id="errors">
+			<h5>Something Went Wrong</h5>
+			<ul>
+				<% @leader.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
 	<div>
 		<%=f.label:first_name %><br>
 		<%=f.text_field:first_name %>

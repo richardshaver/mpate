@@ -1,4 +1,14 @@
 <%= form_for @school do |f| %>
+	<% if @school.errors.any? %>
+		<div id="errors">
+			<h5>Something Went Wrong</h5>
+			<ul>
+				<% @school.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
 	<div>
 		<%= f.label :user_name %><Br>
 		<%= f.text_field :username %>

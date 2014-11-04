@@ -1,4 +1,14 @@
 <%= form_for @volunteer do |f| %>
+	<% if @volunteer.errors.any? %>
+		<div id="errors">
+			<h5>Something Went Wrong</h5>
+			<ul>
+				<% @volunteer.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
 	<div>
 		<%=f.label:first_name %><br>
 		<%=f.text_field:first_name %>
