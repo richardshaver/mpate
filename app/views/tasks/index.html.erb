@@ -1,9 +1,22 @@
 <h1>Tasks</h1>
 
-<p><%= link_to "Add a Task", new_task_path%></p>
+<p><%= link_to "Add a Task", new_task_path, class: "btn btn-new" %></p>
 
-<ul>
-	<% @tasks.each do |task| %>
-		<li><%= task.name %> - <%= link_to "Edit", edit_task_path(task) %>,  <%= link_to "Delete", task_path(task), method: :delete, confirm: "Are you sure?" %></li>
-	<%end%>
-</ul>
+<table border="0" cellspacing="0" cellpadding="0">
+  <thead>
+    <tr>
+      <th width="60%">Name</th>
+      <th width="10%">Assigned</th>
+      <th width="30%">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.name %></td>
+        <td><%= (task.volunteers.count > 0) ? "Yes" : "No" %></td>
+        <td><%= link_to "Edit", edit_task_path(task), class: "btn btn-edit" %> <%= link_to "Delete", task_path(task), method: :delete, confirm: "Are you sure?", class: "btn btn-delete" %></td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>

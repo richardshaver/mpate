@@ -1,9 +1,20 @@
 <h1>Leaders</h1>
 
-<p><%= link_to "Add a Leader", new_leader_path%></p>
+<p><%= link_to "Add a Leader", new_leader_path, class: "btn btn-new" %></p>
 
-<ul>
-	<% @leaders.each do |leader| %>
-		<li><%= leader.full_name %> - <%= link_to "Show", leader_path(leader) %>, <%= link_to "Edit", edit_leader_path(leader) %>,  <%= link_to "Delete", leader_path(leader), method: :delete, confirm: "Are you sure?" %></li>
-	<%end%>
-</ul>
+<table border="0" cellspacing="0" cellpadding="0">
+  <thead>
+    <tr>
+      <th width="70%">Name</th>
+      <th width="30%">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% @leaders.each do |leader| %>
+      <tr>
+    		<td><%= leader.full_name %></td>
+        <td><%= link_to "Show", leader_path(leader), class: "btn btn-show" %> <%= link_to "Edit", edit_leader_path(leader), class: "btn btn-edit" %> <%= link_to "Delete", leader_path(leader), method: :delete, confirm: "Are you sure?", class: "btn btn-delete" %></td>
+      </tr>
+  	<%end%>
+  </tbody>
+</table>

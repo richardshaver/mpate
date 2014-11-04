@@ -1,9 +1,20 @@
 <h1>Managers</h1>
 
-<p><%= link_to "Add a Manager", new_manager_path%></p>
+<p><%= link_to "Add a Manager", new_manager_path, class: "btn btn-new"%></p>
 
-<ul>
-	<% @managers.each do |manager| %>
-		<li><%= manager.user_name %> - <%= link_to "Show", manager_path(manager) %>, <%= link_to "Edit", edit_manager_path(manager) %>,  <%= link_to "Delete", manager_path(manager), method: :delete, confirm: "Are you sure?" %></li>
-	<%end%>
-</ul>
+<table border="0" cellspacing="0" cellpadding="0">
+  <thead>
+    <tr>
+      <th width="70%">Name</th>
+      <th width="30%">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @managers.each do |manager| %>
+      <tr>
+        <td><%= manager.full_name %></td>
+        <td><%= link_to "Show", manager_path(manager), class: "btn btn-show" %> <%= link_to "Edit", edit_manager_path(manager), class: "btn btn-edit" %> <%= link_to "Delete", manager_path(manager), method: :delete, confirm: "Are you sure?", class: "btn btn-delete" %></td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>
