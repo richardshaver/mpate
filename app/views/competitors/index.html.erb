@@ -5,14 +5,18 @@
 <table border="0" cellspacing="0" cellpadding="0">
   <thead>
     <tr>
-      <th width="70%">Competitor Name</th>
-      <th width="30%">Actions</th>
+      <th width="20%">Competitor Name</th>
+      <th width="25%">School</th>
+      <th width="25%">Team</th>
+      <th width="30%">&nbsp;</th>
     </tr>
   </thead>
   <tbody>
   	<% @competitors.each do |competitor| %>
       <tr>
     		<td><%= competitor.full_name %></td>
+        <td><%= competitor.school.school_name %></td>
+        <td><%= (competitor.team) ? competitor.team.team_name : "Not Assigned" %></td>
         <td><%= link_to "Show", competitor_path(competitor), class: "btn btn-show" %> <%= link_to "Edit", edit_competitor_path(competitor), class: "btn btn-edit" %>  <%= link_to "Delete", competitor_path(competitor), method: :delete, confirm: "Are you sure?", class: "btn btn-delete" %></td>
       </tr>
   	<%end%>
