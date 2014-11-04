@@ -1,9 +1,20 @@
 <h1>Competitors</h1>
 
-<p><%= link_to "Add a Competitor", new_competitor_path%></p>
+<p><%= link_to "Add a Competitor", new_competitor_path, class: "btn btn-new" %></p>
 
-<ul>
-	<% @competitors.each do |competitor| %>
-		<li><%= competitor.full_name %> - <%= link_to "Show", competitor_path(competitor) %>, <%= link_to "Edit", edit_competitor_path(competitor) %>,  <%= link_to "Delete", competitor_path(competitor), method: :delete, confirm: "Are you sure?" %></li>
-	<%end%>
-</ul>
+<table border="0" cellspacing="0" cellpadding="0">
+  <thead>
+    <tr>
+      <th width="70%">Competitor Name</th>
+      <th width="30%">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% @competitors.each do |competitor| %>
+      <tr>
+    		<td><%= competitor.full_name %></td>
+        <td><%= link_to "Show", competitor_path(competitor), class: "btn btn-show" %> <%= link_to "Edit", edit_competitor_path(competitor), class: "btn btn-edit" %>  <%= link_to "Delete", competitor_path(competitor), method: :delete, confirm: "Are you sure?", class: "btn btn-delete" %></td>
+      </tr>
+  	<%end%>
+  </tbody>
+</table>

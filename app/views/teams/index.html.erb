@@ -1,9 +1,24 @@
 <h1>Teams</h1>
 
-<p><%= link_to "Add a Team", new_team_path%></p>
+<p><%= link_to "Add a Team", new_team_path, class: "btn btn-new"%></p>
 
-<ul>
-	<% @teams.each do |team| %>
-		<li><%= team.team_name %> - <%= link_to "Show", team_path(team) %>, <%= link_to "Edit", edit_team_path(team) %>,  <%= link_to "Delete", team_path(team), method: :delete, confirm: "Are you sure?" %></li>
-	<%end%>
-</ul>
+<table border="0" cellspacing="0" cellpadding="0">
+  <thead>
+    <tr>
+      <th width="50%">Name</th>
+      <th width="10%">Members</th>
+      <th width="10%">Score</th>
+      <th width="30%">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @teams.each do |team| %>
+      <tr>
+        <td><%= team.team_name %></td>
+        <td><%= team.competitors.count %></td>
+        <td><%= team.total_score %></td>
+        <td><%= link_to "Show", team_path(team), class: "btn btn-show" %> <%= link_to "Edit", edit_team_path(team), class: "btn btn-edit" %> <%= link_to "Delete", team_path(team), method: :delete, confirm: "Are you sure?", class: "btn btn-delete" %></td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>

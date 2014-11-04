@@ -8,9 +8,15 @@
 </head>
 <body>
 
-<%= yield %>
-
-<%= link_to "Home", root_path %>
-
+<div id="container">
+  <header>
+    <h1>MPATE</h1>
+  </header>
+  <div id="main">
+    <%= yield %>
+  </div>
+  <footer>
+    <%= link_to "Home", root_path %>
+  </footer>
 </body>
 </html>
