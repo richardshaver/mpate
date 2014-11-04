@@ -2,6 +2,10 @@ class Team < ActiveRecord::Base
 
 	has_many :competitors
 
+  validates :number, presence: true
+  validates :color, presence: true
+
+
 	def team_name
 		color + " " + number.to_s
 	end
