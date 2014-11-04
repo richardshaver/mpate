@@ -2,7 +2,7 @@ class School < ActiveRecord::Base
 
 	has_many :competitors
 
-  validates :username, presence: true, uniqueness: true
+  validates :user_name, presence: true, uniqueness: true
   validates :password, presence: true, length: { minimum: 4, maximum: 64}
   validates :school_name, presence: true
   validates :address_line_1, presence: true
