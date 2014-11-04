@@ -5,7 +5,8 @@
 <table border="0" cellspacing="0" cellpadding="0">
   <thead>
     <tr>
-      <th width="70%">Name</th>
+      <th width="30%">Name</th>
+      <th width="40%">Task</th>
       <th width="30%">Actions</th>
     </tr>
   </thead>
@@ -13,6 +14,7 @@
     <% @volunteers.each do |volunteer| %>
       <tr>
         <td><%= volunteer.full_name %></td>
+        <td><%= (volunteer.task) ? volunteer.task.name : "Not assigned" %></td>
         <td><%= link_to "Show", volunteer_path(volunteer), class: "btn btn-show" %> <%= link_to "Edit", edit_volunteer_path(volunteer), class: "btn btn-edit" %> <%= link_to "Delete", volunteer_path(volunteer), method: :delete, confirm: "Are you sure?", class: "btn btn-delete" %></td>
       </tr>
     <%end%>
