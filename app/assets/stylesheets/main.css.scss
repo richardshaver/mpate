@@ -1,3 +1,231 @@
-// Place all the styles related to the main controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#container {
+	margin:0 auto;
+	max-width:1000px;
+	width:90%;
+}
+
+header {
+	background:#2c3e50;
+	color:#fff;
+	h1 {
+		margin:0;
+		padding:0.25em;
+		a, a:hover {
+			color:#fff;
+		}
+	}
+	nav {
+		ul {
+			background:#34495e;
+			border-top:1px solid #fff;
+			margin:0 auto;
+			overflow:hidden;
+			padding:0;
+			li {
+				display:inline;
+				list-style:none;
+				margin:0;
+				padding:0;
+				a {
+					border-right:1px solid #fff;
+					color:#fff;
+					display:block;
+					font-weight:bold;
+					float:left;
+					padding:0.25em 1em;
+					&:hover {
+						background:lighten(#34495e, 20%);
+						color:#fff;
+					}
+				}
+			}
+		}
+	}
+}
+
+#main {
+	margin:0;
+	padding:1em 0;
+	h1 {
+		color:#34495e;
+		margin:0 0 1em 0;
+	}
+	p {
+		overflow:hidden;
+	}
+}
+
+footer {
+	border-top:1px solid #aaa;
+	padding:1em;
+	text-align:center;
+}
+
+table {
+	width:100%;
+
+	th {
+		background:#7f8c8d;
+		color:#fff;
+		padding:0.25em;
+		text-align:left;
+	}
+
+	td {
+		border-bottom:1px solid #aaa;
+		padding:0.25em;
+	}
+
+	&.alt {
+		th {
+			background:#ddd;
+			border-bottom:1px solid #aaa;
+			color:#000;
+			width:200px;
+		}
+	}
+
+	&:not(.alt) {
+		td:last-child {
+			text-align:right;
+		}
+	}
+}
+
+
+.btn {
+	background:#7f8c8d;
+	border-radius:0.25em;
+	color:#fff;
+	display:inline-block;
+	font-size:16px;
+	font-weight:bold;
+	padding:0.25em 1em;
+	&:hover {
+		color:#fff;
+	}
+	&.btn-new {
+		background:#27ae60;
+	}
+	&.btn-edit {
+		background:#e67e22;
+	}
+	&.btn-delete {
+		background:#c0392b;
+	}
+	&.btn-show {
+		background:#2980b9
+	}
+}
+
+h1 {
+	.btn {
+		float:right;
+	}
+}
+
+form {
+	background:#eee;
+	margin-top:1em;	
+	padding:1em;
+	div {
+		padding-bottom:0.5em;
+		label {
+			display:inline-block;
+			width:160px;
+		}
+
+		input[type=select],
+		input[type=email],
+		input[type=password],
+		input[type=number],
+		input[type=tel],
+		input[type=text],
+		textarea, select {
+			background:#fff;
+			border:1px solid #aaa;
+			padding:0.25em;
+			width:300px;
+		}
+		&.field_with_errors {
+			display:inline;
+			input, select, textarea {
+				border:1px solid #c0392b;
+			}
+		}
+	}
+
+	input[type=submit] {
+		appearance:none;
+		-webkit-appearance:none;
+		background:#2980b9;
+		border:none;
+		border-radius:0.25em;
+		color:#fff;
+		display:block;
+		font-size:20px;
+		font-weight:bold;
+		margin:1em auto;
+		padding:0.5em 1em;
+		width:auto;
+	}
+}
+
+h1, h2, h3, h4, h5, h6, th {
+	text-transform:capitalize;
+}
+
+.score-header {
+	background:#95a5a6;
+	color:#fff;
+	margin:1em 0 0 0;
+	padding:0.25em;
+	text-align:center;
+}
+
+.score-row {
+	background:#ecf0f1;
+	overflow:hidden;
+	text-align:center;
+	div {
+		background:#fff;
+		border:1px solid #000;
+		display:inline-block;
+		margin:1em;
+		width:100px;
+		span {
+			display:block;
+			width:100px;
+			height:50px;
+			line-height:50px;
+			font-size:32px;
+		}
+	}
+}
+
+.total-score {
+	background:#27ae60;
+	color:#fff;
+	font-size:32px;
+	padding:0.5em;
+	text-align:center;
+}
+
+#errors {
+	background:#fff;
+	border:2px solid #c0392b;
+	margin:-1em -1em 2em -1em;
+	h5 {
+		background:#c0392b;
+		color:#fff;
+		font-size:16px;
+		padding:0.25em;
+	}
+	ul {
+		font-size:13px;
+		margin-bottom:0;
+		li {
+			line-height:140%;
+		}
+	}
+}

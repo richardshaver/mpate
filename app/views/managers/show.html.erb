@@ -1,7 +1,7 @@
-<h2><%= @manager.user_name %></h2>
+<h1><%= @manager.user_name %> <%= link_to "Edit", edit_manager_path(@manager), class: "btn btn-edit" %></h1>
 
-<p><strong>User Name:</strong> <%= @manager.user_name %></p>
-<p><strong>Password:</strong> <%= @manager.password %></p>
-<p><strong>Email:</strong> <%= @manager.email %></p>
-
-<p><%= link_to "Back", managers_path %></p>
+<table border="0" cellspacing="0" cellpadding="3" class="alt">
+	<tr><th>User Name:</th><td><%= @manager.user_name %></td></th>
+	<tr><th>Password:</th><td><%= @manager.password %></td></th>
+	<tr><th>Email:</th><td><%= @manager.email %></td></th>
+</table>

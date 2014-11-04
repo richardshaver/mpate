@@ -1,6 +1,6 @@
-<h2>All Schools</h2>
-
-<p><%= link_to "Add a school", new_school_path, class: "btn btn-new" %></p>
+<h1>All Schools
+<%= link_to "Add a school", new_school_path, class: "btn btn-new" %>
+</h1>
 
 <table border="0" cellspacing="0" cellpadding="0">
   <thead>
@@ -13,7 +13,7 @@
   <tbody>
     <% @schools.each do |school| %>
       <tr>
-        <td><%= school.full_name %></td>
+        <td><%= school.school_name %></td>
         <td><%= school.competitors.count %></td>
         <td><%= link_to "Show", school_path(school), class: "btn btn-show" %> <%= link_to "Edit", edit_school_path(school), class: "btn btn-edit" %> <%= link_to "Delete", school_path(school), method: :delete, confirm: "Are you sure?", class: "btn btn-delete" %></td>
       </tr>

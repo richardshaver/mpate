@@ -10,7 +10,18 @@
 
 <div id="container">
   <header>
-    <h1>MPATE</h1>
+    <h1><%= link_to "MPATE", root_path %></h1>
+    <nav>
+      <ul>
+        <li><%= link_to "Competitors", competitors_path %></li>
+        <li><%= link_to "Leaders", leaders_path %></li>
+        <li><%= link_to "Managers", managers_path %></li>
+        <li><%= link_to "Schools", schools_path %></li>
+        <li><%= link_to "Tasks", tasks_path %></li>
+        <li><%= link_to "Teams", teams_path %></li>
+        <li><%= link_to "Volunteers", volunteers_path %></li>
+      </ul>
+    </nav>
   </header>
   <div id="main">
     <%= yield %>

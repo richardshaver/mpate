@@ -10,54 +10,57 @@
 		</div>
 	<% end %>
 	<div>
-		<%= f.label :school_id, "School" %><br>
+		<%= f.label :school_id, "School" %>
 		<%= collection_select(:competitor, :school_id, @schools, :id, :school_name, prompt: "Select A School") %> 
 	</div>
 	<div>
-		<%=f.label :first_name %><br>
+		<%=f.label :first_name %>
 		<%=f.text_field :first_name %>
 	</div>
 	<div>
-		<%=f.label :last_name %><br>
+		<%=f.label :last_name %>
 		<%=f.text_field :last_name %>
 	</div>
 	<div>
-		<%=f.label :address_line_1 %><br>
+		<%=f.label :address_line_1 %>
 		<%=f.text_field :address_line_1 %>
 	</div>
 	<div>
-		<%=f.label :address_line_2 %><br>
+		<%=f.label :address_line_2 %>
 		<%=f.text_field :address_line_2 %>
 	</div>
 	<div>
-		<%=f.label :city %><br>
+		<%=f.label :city %>
 		<%=f.text_field :city %>
 	</div>
 	<div>
-		<%=f.label :state %><br>
+		<%=f.label :state %>
 		<%=f.text_field :state %>
 	</div>
 	<div>
-		<%=f.label :zip %><br>
+		<%=f.label :zip %>
 		<%=f.number_field :zip %>
 	</div>
 	<div>
-		<%=f.label :grade, "Junior or Senior" %><br>
-		<%=f.radio_button :grade, "junior" %>
-		<%=f.label :grade, "Junior" %>
-		<%=f.radio_button :grade, "senior" %>
-		<%=f.label :grade, "Senior" %>
+		<%=f.label :grade %>
+		<label>
+			<%=f.radio_button :grade, "junior" %>
+			Junior
+		</label>
+		<label>
+			<%=f.radio_button :grade, "senior" %>
+			Senior
+		</label>
 	</div>
 	<div>
-		<%=f.label :email %><br>
+		<%=f.label :email %>
 		<%=f.email_field :email %>
 	</div>
 
 	<div>
-		<%= f.label :team_id, "Team" %><br>
+		<%= f.label :team_id, "Team" %>
 		<%= collection_select(:competitor, :team_id, @teams, :id, :team_name, prompt: "Select A Team") %> 
 	</div>
-
 
 	<% if @competitor.id %>
 		<%= f.submit "Save Changes" %>

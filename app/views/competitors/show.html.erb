@@ -1,14 +1,15 @@
-<h2><%= @competitor.full_name %></h2>
+<h1><%= @competitor.full_name %> <%= link_to "Edit", edit_competitor_path(@competitor), class: "btn btn-edit" %></h1>
 
-<p><strong>First Name:</strong> <%= @competitor.first_name %></p>
-<p><strong>Last Name:</strong> <%= @competitor.last_name %></p>
-<p><strong>Address Line 1:</strong> <%= @competitor.address_line_1 %></p>
-<p><strong>Address Line 2:</strong> <%= @competitor.address_line_2 %></p>
-<p><strong>City:</strong> <%= @competitor.city %></p>
-<p><strong>State:</strong> <%= @competitor.state %></p>
-<p><strong>Zip Code:</strong> <%= @competitor.zip %></p>
-<p><strong>Grade:</strong> <%= @competitor.grade %></p>
-<p><strong>Email:</strong> <%= @competitor.email %></p>
-<p><strong>School:</strong> <%= @competitor.school.school_name %></p>
-<p><strong>Team:</strong> <%= @competitor.team.team_name %></p>
-<p><%= link_to "Back", competitors_path %></p>
+<table border="0" cellspacing="0" cellpadding="3" class="alt">
+	<tr><th>First Name:</th><td><%= @competitor.first_name %></td></tr>
+	<tr><th>Last Name:</th><td><%= @competitor.last_name %></td></tr>
+	<tr><th>Address Line 1:</th><td><%= @competitor.address_line_1 %></td></tr>
+	<tr><th>Address Line 2:</th><td><%= @competitor.address_line_2 %></td></tr>
+	<tr><th>City:</th><td><%= @competitor.city %></td></tr>
+	<tr><th>State:</th><td><%= @competitor.state %></td></tr>
+	<tr><th>Zip Code:</th><td><%= @competitor.zip %></td></tr>
+	<tr><th>Grade:</th><td><%= @competitor.grade %></td></tr>
+	<tr><th>Email:</th><td><%= @competitor.email %></td></tr>
+	<tr><th>School:</th><td><%= @competitor.school.school_name %></td></tr>
+	<tr><th>Team:</th><td><%= @competitor.team.team_name %></td></tr>
+</table>

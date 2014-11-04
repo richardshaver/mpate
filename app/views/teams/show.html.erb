@@ -1,21 +1,31 @@
-<h2><%= @team.team_name %></h2>
+<h1>Team <%= @team.team_name %> <%= link_to "Edit", edit_team_path(@team), class: "btn btn-edit" %></h1>
 
-<p><strong>Team Number:</strong> <%= @team.number %></p>
-<p><strong>Team Color:</strong> <%= @team.color %></p>
+<h5 class="score-header">Scores</h5>
+<div class="score-row">
+	<div><span><%= @team.score_one || "?" %></span><strong>Score 1</strong></div>
+	<div><span><%= @team.score_two || "?" %></span><strong>Score 2</strong></div>
+	<div><span><%= @team.score_three || "?" %></span><strong>Score 3</strong></div>
+	<div><span><%= @team.score_four || "?" %></span><strong>Score 4</strong></div>
+</div>
 
-<h4>Scores:</h4>
-<p><strong>Score 1:</strong> <%= @team.score_one || "Not entered" %></p>
-<p><strong>Score 2:</strong> <%= @team.score_two || "Not entered" %></p>
-<p><strong>Score 3:</strong> <%= @team.score_three || "Not entered" %></p>
-<p><strong>Score 4:</strong> <%= @team.score_four || "Not entered" %></p>
-<br>
-<p><strong>Total Score:</strong> <%= @team.total_score %></p>
-
-<h3>Team Members</h3>
-<ul>
-	<% @team.competitors.each do |c| %>
-		<li><%= c.full_name %></li>
-	<% end %>
-</ul>
-
-<p><%= link_to "Back", teams_path %></p>
+<div class="total-score">Total Score: <%= @team.total_score %></div>
+<hr>
+<h5>Team Members</h5>
+<table border="0" cellspacing="0" cellpadding="0">
+	<thead>
+    	<tr>
+      		<th width="40%">Name</th>
+      		<th width="30%">School</th>
+      		<th width="30%">Actions</th>
+    	</tr>
+  	</thead>
+  	<tbody>
+		<% @team.competitors.each do |competitor| %>
+	  		<tr>
+		  		<td><%= competitor.full_name %></td>
+		  		<td><%= competitor.school.school_name %></td>
+		  		<td><%= link_to "Show", competitor_path(competitor), class: "btn btn-show" %> <%= link_to "Edit", edit_competitor_path(competitor), class: "btn btn-edit" %>  <%= link_to "Delete", competitor_path(competitor), method: :delete, confirm: "Are you sure?", class: "btn btn-delete" %></td>
+	  		</tr>
+		<% end %>
+  	</tbody>
+</table>

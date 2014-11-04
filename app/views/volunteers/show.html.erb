@@ -1,10 +1,11 @@
-<h2><%= @volunteer.full_name %></h2>
+<h1><%= @volunteer.full_name %> <%= link_to "Edit", edit_volunteer_path(@volunteer), class: "btn btn-edit" %></h1>
 
-<p><strong>First Name:</strong> <%= @volunteer.first_name %></p>
-<p><strong>Last Name:</strong> <%= @volunteer.last_name %></p>
-<p><strong>MSU ID:</strong> <%= @volunteer.msu_id %></p>
-<p><strong>Email:</strong> <%= @volunteer.email %></p>
-<p><strong>Phone Number:</strong> <%= @volunteer.phone %></p>
-<p><strong>Referred Instructor:</strong> <%= @volunteer.ref_instructor %></p>
-<p><strong>Task:</strong> <%= @volunteer.task.name %></p>
-<p><%= link_to "Back", volunteers_path %></p>
+<table border="0" cellspacing="0" cellpadding="3" class="alt">
+	<tr><th>First Name:</th><td><%= @volunteer.first_name %></td></tr>
+	<tr><th>Last Name:</th><td><%= @volunteer.last_name %></td></tr>
+	<tr><th>MSU ID:</th><td><%= @volunteer.msu_id %></td></tr>
+	<tr><th>Email:</th><td><%= @volunteer.email %></td></tr>
+	<tr><th>Phone Number:</th><td><%= @volunteer.phone %></td></tr>
+	<tr><th>Referred Instructor:</th><td><%= @volunteer.ref_instructor %></td></tr>
+	<tr><th>Task:</th><td><%= @volunteer.task.name %></td></tr>
+</table>

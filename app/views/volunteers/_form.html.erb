@@ -10,33 +10,33 @@
 		</div>
 	<% end %>
 	<div>
-		<%=f.label :first_name %><br>
+		<%=f.label :first_name %>
 		<%=f.text_field :first_name %>
 	</div>
 	<div>
-		<%=f.label :last_name %><br>
+		<%=f.label :last_name %>
 		<%=f.text_field :last_name %>
 	</div>
 	<div>
-		<%=f.label :msu_id, "MSU ID" %><br>
+		<%=f.label :msu_id, "MSU ID" %>
 		<%=f.text_field :msu_id %>
 	</div>
 	<div>
-		<%=f.label :email %><br>
+		<%=f.label :email %>
 		<%=f.email_field :email %>
 	</div>
 	<div>
-		<%=f.label :phone %><br>
+		<%=f.label :phone %>
 		<%=f.text_field :phone %>
 	</div>
 	<div>
-		<%=f.label :ref_instructor %><br>
+		<%=f.label :ref_instructor %>
 		<%=f.text_field :ref_instructor %>
 	</div>
 
 	<h5>Assign a Task</h5>
 	<div>
-		<%= f.label :task_id, "Task Name" %><br>
+		<%= f.label :task_id, "Task Name" %>
 		<%= collection_select(:volunteer, :task_id, @tasks, :id, :name, prompt: "Select A Task") %> 
 	</div>
 

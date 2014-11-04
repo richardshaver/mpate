@@ -1,10 +1,10 @@
-<h2><%= @leader.full_name %></h2>
+<h1><%= @leader.full_name %> <%= link_to "Edit", edit_leader_path(@leader), class: "btn btn-edit" %></h1>
 
-<p><strong>First Name:</strong> <%= @leader.first_name %></p>
-<p><strong>Last Name:</strong> <%= @leader.last_name %></p>
-<p><strong>User Name:</strong> <%= @leader.user_name %></p>
-<p><strong>Password:</strong> <%= @leader.password %></p>
-<p><strong>Room:</strong> <%= @leader.room %></p>
-<p><strong>Security Level:</strong> <%= @leader.security_level %></p>
-
-<p><%= link_to "Back", leaders_path %></p>
+<table border="0" cellspacing="0" cellpadding="3" class="alt">
+	<tr><th>First Name:</th><td><%= @leader.first_name %></td></tr>
+	<tr><th>Last Name:</th><td><%= @leader.last_name %></td></tr>
+	<tr><th>User Name:</th><td><%= @leader.user_name %></td></tr>
+	<tr><th>Password:</th><td><%= @leader.password %></td></tr>
+	<tr><th>Room:</th><td><%= @leader.room %></td></tr>
+	<tr><th>Security Level:</th><td><%= @leader.security_level %></td></tr>
+</table>
