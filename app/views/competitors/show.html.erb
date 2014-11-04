@@ -10,6 +10,6 @@
 	<tr><th>Zip Code:</th><td><%= @competitor.zip %></td></tr>
 	<tr><th>Grade:</th><td><%= @competitor.grade %></td></tr>
 	<tr><th>Email:</th><td><%= @competitor.email %></td></tr>
-	<tr><th>School:</th><td><%= @competitor.school.school_name %></td></tr>
-	<tr><th>Team:</th><td><%= @competitor.team.team_name %></td></tr>
+	<tr><th>School:</th><td><%= (@competitor.school) ? @competitor.school.school_name : 'Not Assigned' %></td></tr>
+	<tr><th>Team:</th><td><%= (@competitor.team) ? @competitor.team.team_name : 'Not Assigned' %></td></tr>
 </table>

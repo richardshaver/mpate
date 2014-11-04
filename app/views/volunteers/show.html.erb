@@ -7,5 +7,6 @@
 	<tr><th>Email:</th><td><%= @volunteer.email %></td></tr>
 	<tr><th>Phone Number:</th><td><%= @volunteer.phone %></td></tr>
 	<tr><th>Referred Instructor:</th><td><%= @volunteer.ref_instructor %></td></tr>
-	<tr><th>Task:</th><td><%= @volunteer.task.name %></td></tr>
+	<tr><th>Task:</th><td><%= (@volunteer.task) ? @volunteer.task.name : "Not assigned" %></td>
+</tr>
 </table>

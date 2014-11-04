@@ -15,7 +15,7 @@
   	<% @competitors.each do |competitor| %>
       <tr>
     		<td><%= competitor.full_name %></td>
-        <td><%= competitor.school.school_name %></td>
+        <td><%= (competitor.school) ? competitor.school.school_name : "Not assigned" %></td>
         <td><%= (competitor.team) ? competitor.team.team_name : "Not Assigned" %></td>
         <td><%= link_to "Show", competitor_path(competitor), class: "btn btn-show" %> <%= link_to "Edit", edit_competitor_path(competitor), class: "btn btn-edit" %>  <%= link_to "Delete", competitor_path(competitor), method: :delete, confirm: "Are you sure?", class: "btn btn-delete" %></td>
       </tr>
