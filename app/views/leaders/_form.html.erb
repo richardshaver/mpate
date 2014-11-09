@@ -31,7 +31,14 @@
 	</div>
 	<div>
 		<%=f.label :security_level %>
-		<%=f.text_field :security_level %>
+		<label>
+			<%=f.radio_button :security_level, "default" %>
+			Default
+		</label>
+		<label>
+			<%=f.radio_button :security_level, "taskmaster" %>
+			Task Master
+		</label>
 	</div>
 
 	<% if @leader.id %>
