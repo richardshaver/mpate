@@ -9,14 +9,16 @@
 			</ul>
 		</div>
 	<% end %>
-	<div>
-		<%=f.label :number %>
-		<%=f.number_field :number %>
-	</div>
-	<div>
-		<%=f.label :color %>
-		<%=f.text_field :color %>
-	</div>
+	<% if is_manager? %>
+		<div>
+			<%=f.label :number %>
+			<%=f.number_field :number %>
+		</div>
+		<div>
+			<%=f.label :color %>
+			<%=f.text_field :color %>
+		</div>
+	<% end %>
 	<% if @team.id %>
 		<div>
 			<%= f.label :score_one %>

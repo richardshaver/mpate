@@ -13,13 +13,16 @@
 	<tr><th>Teachers Attending:</th><td><%= @school.teachers_attending %></td></tr>
 </table>
 <hr>
-<h5>Students From This School</h5> 
+<h5>
+	Students From This School
+	<%= link_to "Add Competitor", new_competitor_path, class: "btn btn-new" %>
+</h5> 
 <table border="0" cellspacing="0" cellpadding="0">
 	<thead>
     	<tr>
       		<th width="50%">Name</th>
       		<th width="20%">Team</th>
-      		<th width="30%">Actions</th>
+      		<th width="30%">&nbsp;</th>
     	</tr>
   	</thead>
   	<tbody>
@@ -27,7 +30,13 @@
 	  		<tr>
 		  		<td><%= competitor.full_name %></td>
 		  		<td><%= (competitor.team) ? competitor.team.team_name : 'Not Assigned' %></td>
-		  		<td><%= link_to "Show", competitor_path(competitor), class: "btn btn-show" %> <%= link_to "Edit", edit_competitor_path(competitor), class: "btn btn-edit" %>  <%= link_to "Delete", competitor_path(competitor), method: :delete, confirm: "Are you sure?", class: "btn btn-delete" %></td>
+		  		<td>
+		  			<%= link_to "Show", competitor_path(competitor), class: "btn btn-show" %>
+			        <% if is_manager? %>
+			  			<%= link_to "Edit", edit_competitor_path(competitor), class: "btn btn-edit" %>
+			  			<%= link_to "Delete", competitor_path(competitor), method: :delete, confirm: "Are you sure?", class: "btn btn-delete" %>
+			  		<% end %>
+		  		</td>
 	  		</tr>
 		<% end %>
   	</tbody>

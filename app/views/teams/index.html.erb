@@ -1,5 +1,7 @@
 <h1>Teams
-<%= link_to "Add a Team", new_team_path, class: "btn btn-new"%>
+  <% if is_manager? %>
+    <%= link_to "Add a Team", new_team_path, class: "btn btn-new"%>
+  <% end %>
 </h1>
 <table border="0" cellspacing="0" cellpadding="0">
   <thead>
@@ -16,7 +18,13 @@
         <td><%= team.team_name %></td>
         <td><%= team.competitors.count %></td>
         <td><%= team.total_score %></td>
-        <td><%= link_to "Show", team_path(team), class: "btn btn-show" %> <%= link_to "Edit", edit_team_path(team), class: "btn btn-edit" %> <%= link_to "Delete", team_path(team), method: :delete, confirm: "Are you sure?", class: "btn btn-delete" %></td>
+        <td>
+          <%= link_to "Show", team_path(team), class: "btn btn-show" %>
+          <%= link_to "Edit", edit_team_path(team), class: "btn btn-edit" %>
+          <% if is_manager? %>
+            <%= link_to "Delete", team_path(team), method: :delete, confirm: "Are you sure?", class: "btn btn-delete" %>
+          <% end %>
+        </td>
       </tr>
     <%end%>
   </tbody>

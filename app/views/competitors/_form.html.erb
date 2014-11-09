@@ -9,10 +9,14 @@
 			</ul>
 		</div>
 	<% end %>
-	<div>
-		<%= f.label :school_id, "School" %>
-		<%= collection_select(:competitor, :school_id, @schools, :id, :school_name, prompt: "Select A School") %> 
-	</div>
+	<% if is_school? %>
+		<%= f.hidden_field :school_id, value: session[:user] %>
+	<% else %>
+		<div>
+			<%= f.label :school_id, "School" %>
+			<%= collection_select(:competitor, :school_id, @schools, :id, :school_name, prompt: "Select A School") %> 
+		</div>
+	<% end %>
 	<div>
 		<%=f.label :first_name %>
 		<%=f.text_field :first_name %>
@@ -57,11 +61,13 @@
 		<%=f.email_field :email %>
 	</div>
 
-	<div>
-		<%= f.label :team_id, "Team" %>
-		<%= collection_select(:competitor, :team_id, @teams, :id, :team_name, prompt: "Select A Team") %> 
-	</div>
-
+	<% if is_manager? %>
+		<div>
+			<%= f.label :team_id, "Team" %>
+			<%= collection_select(:competitor, :team_id, @teams, :id, :team_name, prompt: "Select A Team") %> 
+		</div>
+	<% end %>
+	
 	<% if @competitor.id %>
 		<%= f.submit "Save Changes" %>
 	<% else %>

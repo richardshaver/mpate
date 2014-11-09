@@ -16,7 +16,7 @@
     	<tr>
       		<th width="40%">Name</th>
       		<th width="30%">School</th>
-      		<th width="30%">Actions</th>
+      		<th width="30%">&nbsp;</th>
     	</tr>
   	</thead>
   	<tbody>
@@ -24,7 +24,13 @@
 	  		<tr>
 		  		<td><%= competitor.full_name %></td>
 		  		<td><%= (competitor.school) ? competitor.school.school_name : 'Not Assigned' %></td>
-		  		<td><%= link_to "Show", competitor_path(competitor), class: "btn btn-show" %> <%= link_to "Edit", edit_competitor_path(competitor), class: "btn btn-edit" %>  <%= link_to "Delete", competitor_path(competitor), method: :delete, confirm: "Are you sure?", class: "btn btn-delete" %></td>
+		  		<td>
+			  		<% if is_manager? %>
+			  			<%= link_to "Show", competitor_path(competitor), class: "btn btn-show" %>
+			  			<%= link_to "Edit", edit_competitor_path(competitor), class: "btn btn-edit" %>
+			  			<%= link_to "Delete", competitor_path(competitor), method: :delete, confirm: "Are you sure?", class: "btn btn-delete" %>
+			  		<% end %>
+		  		</td>
 	  		</tr>
 		<% end %>
   	</tbody>

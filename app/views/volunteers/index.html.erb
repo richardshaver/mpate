@@ -15,7 +15,13 @@
       <tr>
         <td><%= volunteer.full_name %></td>
         <td><%= (volunteer.task) ? volunteer.task.name : "Not assigned" %></td>
-        <td><%= link_to "Show", volunteer_path(volunteer), class: "btn btn-show" %> <%= link_to "Edit", edit_volunteer_path(volunteer), class: "btn btn-edit" %> <%= link_to "Delete", volunteer_path(volunteer), method: :delete, confirm: "Are you sure?", class: "btn btn-delete" %></td>
+        <td>
+          <%= link_to "Show", volunteer_path(volunteer), class: "btn btn-show" %>
+          <%= link_to "Edit", edit_volunteer_path(volunteer), class: "btn btn-edit" %>
+          <% if is_manager? %>
+            <%= link_to "Delete", volunteer_path(volunteer), method: :delete, confirm: "Are you sure?", class: "btn btn-delete" %>
+          <% end %>
+        </td>
       </tr>
     <%end%>
   </tbody>

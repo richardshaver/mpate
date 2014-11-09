@@ -12,7 +12,11 @@ class CompetitorsController < ApplicationController
 	def create
 		@competitor=Competitor.new(model_params)
 		if @competitor.save
-			redirect_to competitors_path
+      if is_school?
+        redirect_to school_path(session[:user])
+      else
+  			redirect_to competitors_path
+      end
 		else
 			render :new
 		end

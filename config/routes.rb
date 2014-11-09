@@ -1,20 +1,19 @@
 Mpate::Application.routes.draw do
   
   resources :teams
-
   resources :managers
-
   resources :tasks
-
   resources :volunteers
-
   resources :leaders
-
   resources :schools
-
   resources :competitors
+  resources :sessions
+
+  get 'login' => 'sessions#new'
+  get 'logout' => 'sessions#destroy'
   
   root "main#index"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -15,7 +15,11 @@
       <tr>
         <td><%= school.school_name %></td>
         <td><%= school.competitors.count %></td>
-        <td><%= link_to "Show", school_path(school), class: "btn btn-show" %> <%= link_to "Edit", edit_school_path(school), class: "btn btn-edit" %> <%= link_to "Delete", school_path(school), method: :delete, confirm: "Are you sure?", class: "btn btn-delete" %></td>
+        <td>
+          <%= link_to "Show", school_path(school), class: "btn btn-show" %>
+          <%= link_to "Edit", edit_school_path(school), class: "btn btn-edit" %>
+          <%= link_to "Delete", school_path(school), method: :delete, confirm: "Are you sure?", class: "btn btn-delete" %>
+        </td>
       </tr>
     <%end%>
   </tbody>

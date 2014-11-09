@@ -9,30 +9,32 @@
 			</ul>
 		</div>
 	<% end %>
-	<div>
-		<%=f.label :first_name %>
-		<%=f.text_field :first_name %>
-	</div>
-	<div>
-		<%=f.label :last_name %>
-		<%=f.text_field :last_name %>
-	</div>
-	<div>
-		<%=f.label :msu_id, "MSU ID" %>
-		<%=f.text_field :msu_id %>
-	</div>
-	<div>
-		<%=f.label :email %>
-		<%=f.email_field :email %>
-	</div>
-	<div>
-		<%=f.label :phone %>
-		<%=f.text_field :phone %>
-	</div>
-	<div>
-		<%=f.label :ref_instructor %>
-		<%=f.text_field :ref_instructor %>
-	</div>
+	<% if is_manager? %>
+		<div>
+			<%=f.label :first_name %>
+			<%=f.text_field :first_name %>
+		</div>
+		<div>
+			<%=f.label :last_name %>
+			<%=f.text_field :last_name %>
+		</div>
+		<div>
+			<%=f.label :msu_id, "MSU ID" %>
+			<%=f.text_field :msu_id %>
+		</div>
+		<div>
+			<%=f.label :email %>
+			<%=f.email_field :email %>
+		</div>
+		<div>
+			<%=f.label :phone %>
+			<%=f.text_field :phone %>
+		</div>
+		<div>
+			<%=f.label :ref_instructor %>
+			<%=f.text_field :ref_instructor %>
+		</div>
+	<% end %>
 
 	<h5>Assign a Task</h5>
 	<div>
