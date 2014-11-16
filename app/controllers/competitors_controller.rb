@@ -1,4 +1,6 @@
 class CompetitorsController < ApplicationController
+  require 'csv'
+
   before_action :set_schools_and_teams, except: [:index, :show, :destroy]
 
   # Set up the different controllers, so we can 
@@ -6,6 +8,14 @@ class CompetitorsController < ApplicationController
 
 	def index
 		@competitors=Competitor.all
+
+    respond_to do |format|
+      format.html
+      format.csv do
+        headers['Content-Disposition'] = "attachment; filename=\"user-list\""
+        headers['Content-Type'] ||= 'text/csv'
+      end
+    end
 	end
 
 	def new
