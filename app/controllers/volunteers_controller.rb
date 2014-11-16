@@ -1,5 +1,8 @@
 class VolunteersController < ApplicationController
 
+  # Set up the different controllers, so we can 
+  # call them when we need to do specific actions
+
 	def index
 		@volunteers=Volunteer.all
 	end
@@ -43,6 +46,8 @@ class VolunteersController < ApplicationController
   	@volunteer.destroy
   	redirect_to volunteers_path
   end
+
+  # List the only information allowed to be passed, to aid in security
 
 	def model_params
 		params.require(:volunteer).permit(

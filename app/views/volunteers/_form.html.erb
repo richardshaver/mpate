@@ -1,4 +1,5 @@
 <%= form_for @volunteer do |f| %>
+	<!-- If page was reloaded due to errors, display errors -->
 	<% if @volunteer.errors.any? %>
 		<div id="errors">
 			<h5>Something Went Wrong</h5>
@@ -9,6 +10,8 @@
 			</ul>
 		</div>
 	<% end %>
+	<!-- Display for fields for data entry, prepopulated if data already exists -->
+	<!-- Only manager can edit the volunteer information -->
 	<% if is_manager? %>
 		<div>
 			<%=f.label :first_name %>
@@ -36,12 +39,16 @@
 		</div>
 	<% end %>
 
+	<!-- Only managers and taskmasters can access this page
+		so no need for further authentication at this stage -->
 	<h5>Assign a Task</h5>
 	<div>
 		<%= f.label :task_id, "Task Name" %>
 		<%= collection_select(:volunteer, :task_id, @tasks, :id, :name, prompt: "Select A Task") %> 
 	</div>
 
+	<!-- If volunteer is already created, we're saving changes
+		otherwise it would be a new volunteer and we need to add the record -->	
 	<% if @volunteer.id %>
 		<%= f.submit "Save Changes" %>
 	<% else %>

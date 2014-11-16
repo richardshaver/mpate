@@ -1,6 +1,9 @@
 class CompetitorsController < ApplicationController
   before_action :set_schools_and_teams, except: [:index, :show, :destroy]
 
+  # Set up the different controllers, so we can 
+  # call them when we need to do specific actions
+
 	def index
 		@competitors=Competitor.all
 	end
@@ -8,6 +11,12 @@ class CompetitorsController < ApplicationController
 	def new
 		@competitor=Competitor.new
 	end
+
+  # If logged in as school, go directly to 
+  # specific school infomation page
+  # Otherwise we show the total list of competitors
+  # as only other way to see this page is to be 
+  # logged in as a manager
 
 	def create
 		@competitor=Competitor.new(model_params)
@@ -49,6 +58,8 @@ class CompetitorsController < ApplicationController
     @schools = School.all.order(school_name: :asc)
     @teams = Team.all.order(:color, :number)
   end
+
+  # List the only information allowed to be passed, to aid in security
 
 	def model_params
 		params.require(:competitor).permit(

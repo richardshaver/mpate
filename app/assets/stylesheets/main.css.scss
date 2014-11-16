@@ -1,9 +1,11 @@
+/* Main container for all pages - set max width */
 #container {
 	margin:0 auto;
 	max-width:1000px;
 	width:90%;
 }
 
+/* Page header, header text, and navigation menu */
 header {
 	background:#2c3e50;
 	color:#fff;
@@ -43,6 +45,9 @@ header {
 	}
 }
 
+/* The container for the content area of the page, and some
+   formatting for the header and paragraph text within. */
+
 #main {
 	margin:0;
 	padding:1em 0;
@@ -55,15 +60,18 @@ header {
 	}
 }
 
+/* Page footer which contains back link - just give it some separation */
 footer {
 	border-top:1px solid #aaa;
 	padding:1em;
 	text-align:center;
 }
 
+/* Pretty up HTML tables */
 table {
 	width:100%;
 
+	/* Default table headings at top of table - for index pages */
 	th {
 		background:#7f8c8d;
 		color:#fff;
@@ -76,6 +84,7 @@ table {
 		padding:0.25em;
 	}
 
+	/* Alternate table headings on left side of table - for show pages */
 	&.alt {
 		th {
 			background:#ddd;
@@ -85,6 +94,7 @@ table {
 		}
 	}
 
+	/* Right align the last table cell in a row for index tables only */
 	&:not(.alt) {
 		td:last-child {
 			text-align:right;
@@ -92,7 +102,7 @@ table {
 	}
 }
 
-
+/* Style buttons - they share many common properties regardless of type */
 .btn {
 	background:#7f8c8d;
 	border-radius:0.25em;
@@ -104,6 +114,7 @@ table {
 	&:hover {
 		color:#fff;
 	}
+	/* Only the background color changes based on button type */
 	&.btn-new {
 		background:#27ae60;
 	}
@@ -118,6 +129,7 @@ table {
 	}
 }
 
+/* Right aling any buttons inside of page headings */
 h1, h5 {
 	.btn {
 		float:right;
@@ -125,10 +137,15 @@ h1, h5 {
 	}
 }
 
+/* Pretty up forms - set some default styles for input 
+   types and alignment of labels */
+
 form {
 	background:#eee;
 	margin-top:1em;	
 	padding:1em;
+
+	/* each field row within the form */
 	div {
 		padding-bottom:0.5em;
 		label {
@@ -148,6 +165,11 @@ form {
 			padding:0.25em;
 			width:300px;
 		}
+
+		/* Make auto-generated error field div wrapper display as
+		   inline element so it doesn't break the form layout - 
+		   give each input field within it a red border */
+
 		&.field_with_errors {
 			display:inline;
 			input, select, textarea {
@@ -156,6 +178,7 @@ form {
 		}
 	}
 
+	/* Style our submit button - closely matches .button link class */
 	input[type=submit] {
 		appearance:none;
 		-webkit-appearance:none;
@@ -172,10 +195,12 @@ form {
 	}
 }
 
+/* Capitalize headings */
 h1, h2, h3, h4, h5, h6, th {
 	text-transform:capitalize;
 }
 
+/* The heading for the score boxes */
 .score-header {
 	background:#95a5a6;
 	color:#fff;
@@ -184,6 +209,7 @@ h1, h2, h3, h4, h5, h6, th {
 	text-align:center;
 }
 
+/* The score boxes - set borders, font, etc. */
 .score-row {
 	background:#ecf0f1;
 	overflow:hidden;
@@ -204,6 +230,7 @@ h1, h2, h3, h4, h5, h6, th {
 	}
 }
 
+/* Nicely format the total scores row */
 .total-score {
 	background:#27ae60;
 	color:#fff;
@@ -212,6 +239,7 @@ h1, h2, h3, h4, h5, h6, th {
 	text-align:center;
 }
 
+/* Pretty up form error messages */
 #errors {
 	background:#fff;
 	border:2px solid #c0392b;

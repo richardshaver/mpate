@@ -1,3 +1,8 @@
+/* This file fixes a lot of inconsistencies in default formatting
+   between different web browsers, so that everything looks the same
+   across multiple browsers. */
+
+/* The * applies to every element in the DOM - fix box model silliness */
 * {
   box-sizing: border-box;
   -moz-box-sizing: border-box;

@@ -1,6 +1,10 @@
 class School < ActiveRecord::Base
 
+	# Each school will have several students
+	
 	has_many :competitors
+
+	# Set up data validation for our forms
 
  	validates :user_name, presence: true, uniqueness: true
   	validates :password, presence: true, length: { minimum: 4, maximum: 64}

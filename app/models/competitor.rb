@@ -1,7 +1,12 @@
 class Competitor < ActiveRecord::Base
 
+	# Each competitor can be a student of a school 
+	# as well as a member of a team
+
 	belongs_to :school
 	belongs_to :team
+
+	# Set up data validation for our forms
 
 	validates_presence_of :school
 	validates :first_name, presence: true
@@ -13,6 +18,8 @@ class Competitor < ActiveRecord::Base
  	validates :state, presence: true
  	validates :zip, presence: true
 
+ 	# This creates a way to display both names with a single variable
+ 	
 	def full_name
 		first_name + " " + last_name
 	end

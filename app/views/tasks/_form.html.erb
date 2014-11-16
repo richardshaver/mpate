@@ -1,4 +1,5 @@
 <%= form_for @task do |f| %>
+	<!-- If page was reloaded due to errors, display errors -->
 	<% if @task.errors.any? %>
 		<div id="errors">
 			<h5>Something Went Wrong</h5>
@@ -9,11 +10,14 @@
 			</ul>
 		</div>
 	<% end %>
+	<!-- Display for fields for data entry, prepopulated if data already exists -->
 	<div>
 		<%=f.label :name %>
 		<%=f.text_field:name %>
 	</div>
 
+	<!-- If task is already created, we're saving changes
+		otherwise it would be a new task and we need to add the record -->	
 	<% if @task.id %>
 		<%= f.submit "Save Changes" %>
 	<% else %>

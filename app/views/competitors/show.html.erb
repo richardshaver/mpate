@@ -1,5 +1,7 @@
 <h1><%= @competitor.full_name %> <% if is_manager? %><%= link_to "Edit", edit_competitor_path(@competitor), class: "btn btn-edit" %><% end %></h1>
 
+<!-- Display competitor information -->
+
 <table border="0" cellspacing="0" cellpadding="3" class="alt">
 	<tr><th>First Name:</th><td><%= @competitor.first_name %></td></tr>
 	<tr><th>Last Name:</th><td><%= @competitor.last_name %></td></tr>

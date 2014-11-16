@@ -3,6 +3,9 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  # Set up login authentication variables
+  # to keep track of access permissions
+
   def is_logged_in?
   	if session[:user] && session[:user] != nil
   		true
@@ -30,6 +33,9 @@ class ApplicationController < ActionController::Base
   	return false unless is_logged_in?
   	return session[:taskmaster] == true
   end
+
+  # Set up helpers so the login permissions 
+  # can be accessed throughout the application
 
   helper_method :is_logged_in?
   helper_method :is_manager?

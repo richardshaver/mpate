@@ -1,4 +1,5 @@
 <%= form_for @leader do |f| %>
+	<!-- If page was reloaded due to errors, display errors -->
 	<% if @leader.errors.any? %>
 		<div id="errors">
 			<h5>Something Went Wrong</h5>
@@ -9,6 +10,7 @@
 			</ul>
 		</div>
 	<% end %>
+	<!-- Display for fields for data entry, prepopulated if data already exists -->
 	<div>
 		<%=f.label :first_name %>
 		<%=f.text_field :first_name %>
@@ -41,6 +43,8 @@
 		</label>
 	</div>
 
+	<!-- If leader is already created, we're saving changes
+		otherwise it would be a new leader and we need to add the record -->	
 	<% if @leader.id %>
 		<%= f.submit "Save Changes" %>
 	<% else %>

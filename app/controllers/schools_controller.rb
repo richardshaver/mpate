@@ -1,4 +1,8 @@
 class SchoolsController < ApplicationController
+
+  # Set up the different controllers, so we can 
+  # call them when we need to do specific actions
+
   def index
   	@schools = School.all
   end
@@ -38,6 +42,8 @@ class SchoolsController < ApplicationController
   	@school.destroy
   	redirect_to schools_path
   end
+
+  # List the only information allowed to be passed, to aid in security
 
   def model_params
   	params.require(:school).permit(

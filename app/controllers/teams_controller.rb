@@ -1,5 +1,8 @@
 class TeamsController < ApplicationController
 
+	# Set up the different controllers, so we can 
+	# call them when we need to do specific actions
+
 	def index
 		@teams=Team.all
 	end
@@ -39,6 +42,8 @@ class TeamsController < ApplicationController
   	@team.destroy
   	redirect_to teams_path
   end
+
+	# List the only information allowed to be passed, to aid in security
 
 	def model_params
 		params.require(:team).permit(

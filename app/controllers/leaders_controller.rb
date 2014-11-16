@@ -3,6 +3,9 @@ class LeadersController < ApplicationController
 		@leaders=Leader.all
 	end
 
+	# Set up the different controllers, so we can 
+	# call them when we need to do specific actions
+
 	def new
 		@leader=Leader.new
 	end
@@ -38,6 +41,8 @@ class LeadersController < ApplicationController
   	@leader.destroy
   	redirect_to leaders_path
   end
+
+	# List the only information allowed to be passed, to aid in security
 
 	def model_params
 		params.require(:leader).permit(

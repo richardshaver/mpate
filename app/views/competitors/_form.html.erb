@@ -1,4 +1,7 @@
+<!-- Set up the form for competitor data entry -->
+
 <%= form_for @competitor do |f| %>
+	<!-- If page was reloaded due to errors, display errors -->
 	<% if @competitor.errors.any? %>
 		<div id="errors">
 			<h5>Something Went Wrong</h5>
@@ -9,9 +12,13 @@
 			</ul>
 		</div>
 	<% end %>
+	<!-- If this page was accessed with school level security
+		then the school the student belongs to will be set automatically -->
 	<% if is_school? %>
 		<%= f.hidden_field :school_id, value: session[:user] %>
 	<% else %>
+		<!-- If this page was not accessed with school level security
+			then we used manager level, and manager can manually set school -->
 		<div>
 			<%= f.label :school_id, "School" %>
 			<%= collection_select(:competitor, :school_id, @schools, :id, :school_name, prompt: "Select A School") %> 
@@ -61,13 +68,16 @@
 		<%=f.email_field :email %>
 	</div>
 
+	<!-- Manager can edit the team the student belongs to -->
 	<% if is_manager? %>
 		<div>
 			<%= f.label :team_id, "Team" %>
 			<%= collection_select(:competitor, :team_id, @teams, :id, :team_name, prompt: "Select A Team") %> 
 		</div>
 	<% end %>
-	
+
+	<!-- If competitor is already created, we're saving changes
+		otherwise it would be a new competitor and we need to add the record -->	
 	<% if @competitor.id %>
 		<%= f.submit "Save Changes" %>
 	<% else %>

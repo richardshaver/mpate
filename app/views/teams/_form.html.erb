@@ -1,4 +1,5 @@
 <%= form_for @team do |f| %>
+	<!-- If page was reloaded due to errors, display errors -->
 	<% if @team.errors.any? %>
 		<div id="errors">
 			<h5>Something Went Wrong</h5>
@@ -9,6 +10,8 @@
 			</ul>
 		</div>
 	<% end %>
+	<!-- Display for fields for data entry, prepopulated if data already exists -->
+	<!-- Only the manager can create the teams -->
 	<% if is_manager? %>
 		<div>
 			<%=f.label :number %>
@@ -19,6 +22,7 @@
 			<%=f.text_field :color %>
 		</div>
 	<% end %>
+	<!-- Scores only displayed if team already exists -->
 	<% if @team.id %>
 		<div>
 			<%= f.label :score_one %>
@@ -37,6 +41,9 @@
 			<%= f.number_field :score_four %>
 		</div>
 	<% end %>
+
+	<!-- If team is already created, we're saving changes
+		otherwise it would be a new team and we need to add the record -->	
 	<% if @team.id %>
 		<%= f.submit "Save Changes" %>
 	<% else %>

@@ -1,5 +1,8 @@
 class ManagersController < ApplicationController
 
+  # Set up the different controllers, so we can 
+  # call them when we need to do specific actions
+
 	def index
 		@managers=Manager.all
 	end
@@ -39,6 +42,8 @@ class ManagersController < ApplicationController
   	@manager.destroy
   	redirect_to managers_path
   end
+
+  # List the only information allowed to be passed, to aid in security
 
 	def model_params
 		params.require(:manager).permit(

@@ -1,4 +1,5 @@
 <%= form_for @school do |f| %>
+	<!-- If page was reloaded due to errors, display errors -->
 	<% if @school.errors.any? %>
 		<div id="errors">
 			<h5>Something Went Wrong</h5>
@@ -9,6 +10,7 @@
 			</ul>
 		</div>
 	<% end %>
+	<!-- Display for fields for data entry, prepopulated if data already exists -->
 	<div>
 		<%= f.label :user_name %>
 		<%= f.text_field :user_name %>
@@ -50,6 +52,8 @@
 		<%= f.text_field :teachers_attending %>
 	</div>
 
+	<!-- If school is already created, we're saving changes
+		otherwise it would be a new school and we need to add the record -->	
 	<% if @school.id %>
 		<%= f.submit "Save Changes" %>
 	<% else %>

@@ -1,5 +1,7 @@
 <h1>Team <%= @team.team_name %> <%= link_to "Edit", edit_team_path(@team), class: "btn btn-edit" %></h1>
 
+<!-- Display team scores  -->
+
 <h5 class="score-header">Scores</h5>
 <div class="score-row">
 	<div><span><%= @team.score_one || "?" %></span><strong>Score 1</strong></div>
@@ -10,6 +12,7 @@
 
 <div class="total-score">Total Score: <%= @team.total_score %></div>
 <hr>
+<!-- Display table of team members -->
 <h5>Team Members</h5>
 <table border="0" cellspacing="0" cellpadding="0">
 	<thead>
@@ -25,6 +28,7 @@
 		  		<td><%= competitor.full_name %></td>
 		  		<td><%= (competitor.school) ? competitor.school.school_name : 'Not Assigned' %></td>
 		  		<td>
+		  			<!-- Only manager can manipluate competitors on the team -->
 			  		<% if is_manager? %>
 			  			<%= link_to "Show", competitor_path(competitor), class: "btn btn-show" %>
 			  			<%= link_to "Edit", edit_competitor_path(competitor), class: "btn btn-edit" %>

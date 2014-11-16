@@ -1,8 +1,10 @@
 <h1>Teams
+  <!-- Only managers can manually create teams -->
   <% if is_manager? %>
     <%= link_to "Add a Team", new_team_path, class: "btn btn-new"%>
   <% end %>
 </h1>
+<!-- List the current teams in the database -->
 <table border="0" cellspacing="0" cellpadding="0">
   <thead>
     <tr>

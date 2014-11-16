@@ -1,5 +1,6 @@
 <h1><%= @school.school_name %> <%= link_to "Edit", edit_school_path(@school), class: "btn btn-edit" %></h1>
 
+<!-- Display school information -->
 <table border="0" cellspacing="0" cellpadding="3" class="alt">
 	<tr><th>School Name:</th><td><%= @school.school_name %></td></tr>
 	<tr><th>Username:</th><td><%= @school.user_name %></td></tr>
@@ -13,6 +14,7 @@
 	<tr><th>Teachers Attending:</th><td><%= @school.teachers_attending %></td></tr>
 </table>
 <hr>
+<!-- Display competitors that belong to this school -->
 <h5>
 	Students From This School
 	<%= link_to "Add Competitor", new_competitor_path, class: "btn btn-new" %>
@@ -32,6 +34,7 @@
 		  		<td><%= (competitor.team) ? competitor.team.team_name : 'Not Assigned' %></td>
 		  		<td>
 		  			<%= link_to "Show", competitor_path(competitor), class: "btn btn-show" %>
+		  			<!-- Only managers can edit and delete competitors -->
 			        <% if is_manager? %>
 			  			<%= link_to "Edit", edit_competitor_path(competitor), class: "btn btn-edit" %>
 			  			<%= link_to "Delete", competitor_path(competitor), method: :delete, confirm: "Are you sure?", class: "btn btn-delete" %>

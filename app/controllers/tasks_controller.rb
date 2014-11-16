@@ -1,4 +1,8 @@
 class TasksController < ApplicationController
+
+	# Set up the different controllers, so we can 
+	# call them when we need to do specific actions
+
 	def index
 		@tasks=Task.all
 	end
@@ -38,6 +42,8 @@ class TasksController < ApplicationController
   	@task.destroy
   	redirect_to tasks_path
   end
+
+	# List the only information allowed to be passed, to aid in security
 
 	def model_params
 		params.require(:task).permit(
