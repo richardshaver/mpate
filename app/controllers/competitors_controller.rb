@@ -12,7 +12,8 @@ class CompetitorsController < ApplicationController
     respond_to do |format|
       format.html
       format.csv do
-        headers['Content-Disposition'] = "attachment; filename=\"mpate-competitors\""
+        filename = "mpate-" + params[:controller] + "-" + Time.now.strftime("%m-%e-%Y")
+        headers['Content-Disposition'] = "attachment; filename=\"#{filename}\""
         headers['Content-Type'] ||= 'text/csv'
       end
     end

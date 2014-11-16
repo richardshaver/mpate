@@ -1,15 +1,35 @@
-<%- headers = [
+<% headers = [
 	'First Name',
 	'Last Name',
-	'Email'
-] -%>
+	'Email',
+	'School',
+	'Grade',
+	'Address Line 1',
+	'Address Line 2',
+	'City',
+	'State',
+	'Zip Code',
+	'Team'
+] %>
 
 <%= CSV.generate_line headers %>
-
-<%- @competitors.each do |competitor| -%>
-  <%= CSV.generate_line([
+<% @competitors.each do |competitor| %>
+<% 
+	if competitor.team.nil?
+		team_name = "unassigned"
+	else
+		team_name = competitor.team.team_name
+	end
+%><%= CSV.generate_line([
   	competitor.first_name,
   	competitor.last_name,
-  	competitor.email
-  ]) %>
-<%- end -%>
+  	competitor.email,
+  	competitor.school.school_name,
+  	competitor.grade,
+  	competitor.address_line_1,
+  	competitor.address_line_2,
+  	competitor.city,
+  	competitor.state,
+  	competitor.zip,
+  	team_name
+]) %><% end %>

@@ -1,10 +1,20 @@
 class TasksController < ApplicationController
+  require 'csv'
 
 	# Set up the different controllers, so we can 
 	# call them when we need to do specific actions
 
 	def index
 		@tasks=Task.all
+
+	    respond_to do |format|
+	      format.html
+	      format.csv do
+	        filename = "mpate-" + params[:controller] + "-" + Time.now.strftime("%m-%e-%Y")
+	        headers['Content-Disposition'] = "attachment; filename=\"#{filename}\""
+	        headers['Content-Type'] ||= 'text/csv'
+	      end
+	    end
 	end
 
 	def new

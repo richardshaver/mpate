@@ -14,12 +14,12 @@
 	<!-- Only the manager can create the teams -->
 	<% if is_manager? %>
 		<div>
-			<%=f.label :number %>
-			<%=f.number_field :number %>
-		</div>
-		<div>
 			<%=f.label :color %>
 			<%=f.text_field :color %>
+		</div>
+		<div>
+			<%=f.label :number %>
+			<%=f.number_field :number %>
 		</div>
 	<% end %>
 	<!-- Scores only displayed if team already exists -->

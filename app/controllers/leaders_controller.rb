@@ -1,6 +1,17 @@
 class LeadersController < ApplicationController
+  require 'csv'
+
 	def index
 		@leaders=Leader.all
+
+	    respond_to do |format|
+	      format.html
+	      format.csv do
+	        filename = "mpate-" + params[:controller] + "-" + Time.now.strftime("%m-%e-%Y")
+	        headers['Content-Disposition'] = "attachment; filename=\"#{filename}\""
+	        headers['Content-Type'] ||= 'text/csv'
+	      end
+	    end
 	end
 
 	# Set up the different controllers, so we can 

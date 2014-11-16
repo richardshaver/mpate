@@ -1,0 +1,18 @@
+<% headers = [
+	'MSU ID',
+	'First Name',
+	'Last Name',
+	'Email',
+	'Phone Number',
+	'Referring Instructor'
+] %>
+
+<%= CSV.generate_line headers %>
+<% @volunteers.each do |volunteer| %><%= CSV.generate_line([
+	volunteer.msu_id,
+  	volunteer.first_name,
+  	volunteer.last_name,
+  	volunteer.email,
+  	volunteer.phone,
+  	volunteer.ref_instructor
+]) %><% end %>
