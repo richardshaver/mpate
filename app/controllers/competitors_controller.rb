@@ -1,4 +1,6 @@
 class CompetitorsController < ApplicationController
+  require 'csv'
+
   before_action :set_schools_and_teams, except: [:index, :show, :destroy]
 
 	def index
