@@ -29,6 +29,7 @@
             <li><%= link_to "Teams", teams_path %></li>
             <% if is_manager? || is_taskmaster? %>
               <li><%= link_to "Volunteers", volunteers_path %></li>
+              <li><%= link_to "Results", results_path %></li>
             <% end %>
           <% end %>
           <li><%= link_to "Log Out", logout_path %></li>

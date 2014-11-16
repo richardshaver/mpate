@@ -72,11 +72,24 @@ table {
 	width:100%;
 
 	/* Default table headings at top of table - for index pages */
+	&.results {
+		th {
+	        cursor:pointer;
+	        text-decoration:underline;
+		}
+	}
 	th {
 		background:#7f8c8d;
 		color:#fff;
 		padding:0.25em;
 		text-align:left;
+		a {
+		    color:#fff;
+		    &:hover {
+		    	color:#fff;
+		    	text-decoration:underline;
+		    }
+		}
 	}
 
 	td {
@@ -100,6 +113,23 @@ table {
 			text-align:right;
 		}
 	}
+	&.results {
+		td {
+			text-align:left !important;
+		}
+	}
+
+	td {
+	    small {
+	        color:#777;
+	        display:block;
+	    }
+	}
+}
+
+.dataTables_length, .dataTables_filter,
+.dataTables_paginate, .dataTables_info {
+	display:none;
 }
 
 /* Style buttons - they share many common properties regardless of type */

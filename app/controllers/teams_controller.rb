@@ -43,6 +43,10 @@ class TeamsController < ApplicationController
   	redirect_to teams_path
   end
 
+  def results
+  	@teams = Team.all
+  end
+
 	# List the only information allowed to be passed, to aid in security
 
 	def model_params

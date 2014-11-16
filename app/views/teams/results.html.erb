@@ -1,0 +1,33 @@
+<h1>Competition Results</h1>
+
+<table border="0" cellspacing="0" cellpadding="0" class="results">
+  <thead>
+    <tr>
+      <th width="50%">Name</th>
+      <th width="10%">Score 1</th>
+      <th width="10%">Score 2</th>
+      <th width="10%">Score 3</th>
+      <th width="10%">Score 4</th>
+      <th width="10%">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @teams.each do |team| %>
+      <tr>
+        <td>
+        	<%= team.team_name %>
+        	<small>
+        		<% team.competitors.each do |c| %>
+	        		<%= c.full_name %>,
+        		<% end %>
+        	</small>
+        </td>
+        <td><%= team.score_one %></td>
+        <td><%= team.score_two %></td>
+        <td><%= team.score_three %></td>
+        <td><%= team.score_four %></td>
+        <td><%= team.total_score %></td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>

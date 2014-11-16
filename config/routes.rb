@@ -11,7 +11,9 @@ Mpate::Application.routes.draw do
 
   get 'login' => 'sessions#new'
   get 'logout' => 'sessions#destroy'
-  
+
+  get 'results' => 'teams#results'
+
   root "main#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
