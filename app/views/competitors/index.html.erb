@@ -25,4 +25,6 @@
   </tbody>
 </table>
 <br>
-<%= link_to "Download as CSV", competitors_path(format: "csv"), class: "btn" %>
+<% if is_manager? %>
+  <%= link_to "Download as CSV", competitors_path(format: "csv"), class: "btn" %>
+<% end %>

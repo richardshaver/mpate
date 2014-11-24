@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
 
   def is_leader?
   	return false unless is_logged_in?
-  	return session[:type] == "leader"
+  	return session[:type] == "leader" && session[:taskmaster] == false
   end
 
   def is_school?
