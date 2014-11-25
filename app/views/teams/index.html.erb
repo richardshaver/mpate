@@ -4,33 +4,72 @@
     <%= link_to "Add a Team", new_team_path, class: "btn btn-new"%>
   <% end %>
 </h1>
+
+<% if is_leader? %>
+  <%= link_to "Round 1", teams_path(filter: "room_1"), class: "btn " + ((@active_btn == "room_1") ? "btn-show" : "") %>
+  <%= link_to "Round 2", teams_path(filter: "room_2"), class: "btn " + ((@active_btn == "room_2") ? "btn-show" : "") %>
+  <%= link_to "Round 3", teams_path(filter: "room_3"), class: "btn " + ((@active_btn == "room_3") ? "btn-show" : "") %>
+  <%= link_to "Round 4", teams_path(filter: "room_4"), class: "btn " + ((@active_btn == "room_4") ? "btn-show" : "") %>
+  <br><br>
+<% end %>
+
 <!-- List the current teams in the database -->
-<table border="0" cellspacing="0" cellpadding="0">
-  <thead>
-    <tr>
-      <th width="50%">Name</th>
-      <th width="10%">Members</th>
-      <th width="10%">Score</th>
-      <th width="30%">&nbsp;</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @teams.each do |team| %>
-      <tr>
-        <td><%= team.team_name %></td>
-        <td><%= team.competitors.count %></td>
-        <td><%= team.total_score %></td>
-        <td>
-          <%= link_to "Show", team_path(team), class: "btn btn-show" %>
-          <%= link_to "Edit", edit_team_path(team), class: "btn btn-edit" %>
-          <% if is_manager? %>
-            <%= link_to "Delete", team_path(team), method: :delete, confirm: "Are you sure?", class: "btn btn-delete" %>
+<% if is_manager? || params[:filter] %>
+  <% if @teams.count > 0 %>
+    <table border="0" cellspacing="0" cellpadding="0">
+      <thead>
+        <tr>
+          <th width="50%">Name</th>
+          <th width="10%">Members</th>
+          <th width="10%">Score</th>
+          <th width="30%">&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @teams.each do |team| %>
+          <tr>
+            <td><%= team.team_name %></td>
+            <td><%= team.competitors.count %></td>
+            <% if params[:filter] %>
+            <td colspan="2">
+            <% else %>
+            <td>
+            <% end %>
+              <% if params[:filter] %>
+                <%= form_for team do |f| %>
+                  <% if params[:filter] == "room_1" %>
+                    <%= f.number_field :score_one %>
+                  <% elsif params[:filter] == "room_2" %>
+                    <%= f.number_field :score_two %>
+                  <% elsif params[:filter] == "room_3" %>
+                    <%= f.number_field :score_three %>
+                  <% elsif params[:filter] == "room_4" %>
+                    <%= f.number_field :score_four %>
+                  <% end %>
+                  <%= f.hidden_field :filter, value: params[:filter] %>
+                  <%= f.submit "Save", class: "btn" %>
+                <% end %>
+              <% else %>
+                <%= team.total_score %>
+              <% end %>
+            </td>
+            <% unless params[:filter] %>
+            <td>
+              <%= link_to "Show", team_path(team), class: "btn btn-show" %>
+              <%= link_to "Edit", edit_team_path(team), class: "btn btn-edit" %>
+              <% if is_manager? %>
+                <%= link_to "Delete", team_path(team), method: :delete, confirm: "Are you sure?", class: "btn btn-delete" %>
+              <% end %>
+            </td>
           <% end %>
-        </td>
-      </tr>
-    <%end%>
-  </tbody>
-</table>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+  <% else %>
+    <p><em>No teams found...</em></p>
+  <% end %>
+<% end %>
 <br>
 <% if is_manager? %>
   <%= link_to "Download as CSV", teams_path(format: "csv"), class: "btn" %>

@@ -1,13 +1,12 @@
 <h1>Team <%= @team.team_name %> <%= link_to "Edit", edit_team_path(@team), class: "btn btn-edit" %></h1>
 
 <!-- Display team scores  -->
-
 <h5 class="score-header">Scores</h5>
 <div class="score-row">
-	<div><span><%= @team.score_one || "?" %></span><strong>Score 1</strong></div>
-	<div><span><%= @team.score_two || "?" %></span><strong>Score 2</strong></div>
-	<div><span><%= @team.score_three || "?" %></span><strong>Score 3</strong></div>
-	<div><span><%= @team.score_four || "?" %></span><strong>Score 4</strong></div>
+	<div><span><%= @team.score_one || "?" %></span><strong><%= (@team.room_1.blank?) ? "Score 1" : @team.room_1 %></strong></div>
+	<div><span><%= @team.score_two || "?" %></span><strong><%= (@team.room_2.blank?) ? "Score 2" : @team.room_2 %></strong></div>
+	<div><span><%= @team.score_three || "?" %></span><strong><%= (@team.room_3.blank?) ? "Score 3" : @team.room_3 %></strong></div>
+	<div><span><%= @team.score_four || "?" %></span><strong><%= (@team.room_4.blank?) ? "Score 4" : @team.room_4 %></strong></div>
 </div>
 
 <div class="total-score">Total Score: <%= @team.total_score %></div>

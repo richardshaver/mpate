@@ -135,6 +135,24 @@ table {
 	        display:block;
 	    }
 	}
+
+	form {
+		text-align:left;
+		background:none;
+		margin:0;
+		padding:0;
+		input[type=number] {
+			display:inline;
+			width:80px;
+			margin-right:1em;
+		}
+		input[type=submit] {
+			display:inline;
+			font-size:13px;
+			margin:0;
+			padding:0.4em 1.5em;
+		}
+	}
 }
 
 .dataTables_length, .dataTables_filter,

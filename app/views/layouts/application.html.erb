@@ -24,10 +24,12 @@
           <% end %>
           <% if is_manager? || is_taskmaster? %>
             <li><%= link_to "Tasks", tasks_path %></li>
-            <li><%= link_to "Volunteers", volunteers_path %></li>
           <% end %>
           <% if is_manager? || is_leader? %>
             <li><%= link_to "Teams", teams_path %></li>
+          <% end %>
+          <% if is_manager? || is_taskmaster? %>
+            <li><%= link_to "Volunteers", volunteers_path %></li>
           <% end %>
           <% if is_manager? %>
             <li><%= link_to "Results", results_path %></li>

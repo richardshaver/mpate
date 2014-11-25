@@ -24,6 +24,26 @@
 	<% end %>
 	<!-- Scores only displayed if team already exists -->
 	<% if @team.id %>
+		<% if is_manager? %>
+			<br>
+			<div>
+				<%= f.label :room_1 %>
+				<%= collection_select(:team, :room_1, @leaders, :room, :room, prompt: "Select A Room") %> 
+			</div>
+			<div>
+				<%= f.label :room_2 %>
+				<%= collection_select(:team, :room_2, @leaders, :room, :room, prompt: "Select A Room") %> 
+			</div>
+			<div>
+				<%= f.label :room_3 %>
+				<%= collection_select(:team, :room_3, @leaders, :room, :room, prompt: "Select A Room") %> 
+			</div>
+			<div>
+				<%= f.label :room_4 %>
+				<%= collection_select(:team, :room_4, @leaders, :room, :room, prompt: "Select A Room") %> 
+			</div>
+		<% end %>
+		<br>
 		<div>
 			<%= f.label :score_one %>
 			<%= f.number_field :score_one %>
@@ -40,6 +60,7 @@
 			<%= f.label :score_four %>
 			<%= f.number_field :score_four %>
 		</div>
+
 	<% end %>
 
 	<!-- If team is already created, we're saving changes
