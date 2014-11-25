@@ -8,7 +8,13 @@ class VolunteersController < ApplicationController
 		@volunteers=Volunteer.all
 
     respond_to do |format|
-      format.html
+      format.html do
+        if is_logged_in?
+          render "volunteers/index"
+        else
+          render "volunteers/thanks"
+        end
+      end
       format.csv do
         filename = "mpate-" + params[:controller] + "-" + Time.now.strftime("%m-%e-%Y")
         headers['Content-Disposition'] = "attachment; filename=\"#{filename}\""

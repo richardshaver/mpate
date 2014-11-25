@@ -12,7 +12,7 @@
 	<% end %>
 	<!-- Display for fields for data entry, prepopulated if data already exists -->
 	<!-- Only manager can edit the volunteer information -->
-	<% if is_manager? %>
+	<% if is_manager? || !is_logged_in? %>
 		<div>
 			<%=f.label :first_name %>
 			<%=f.text_field :first_name %>
@@ -39,20 +39,25 @@
 		</div>
 	<% end %>
 
-	<!-- Only managers and taskmasters can access this page
-		so no need for further authentication at this stage -->
-	<h5>Assign a Task</h5>
-	<div>
-		<%= f.label :task_id, "Task Name" %>
-		<%= collection_select(:volunteer, :task_id, @tasks, :id, :name, prompt: "Select A Task") %> 
-	</div>
-
+	<% if is_logged_in? %>
+		<!-- Only managers and taskmasters can access this page
+			so no need for further authentication at this stage -->
+		<h5>Assign a Task</h5>
+		<div>
+			<%= f.label :task_id, "Task Name" %>
+			<%= collection_select(:volunteer, :task_id, @tasks, :id, :name, prompt: "Select A Task") %> 
+		</div>
+	<% end %>
 	<!-- If volunteer is already created, we're saving changes
 		otherwise it would be a new volunteer and we need to add the record -->	
 	<% if @volunteer.id %>
 		<%= f.submit "Save Changes" %>
 	<% else %>
-		<%= f.submit "Add Volunteer" %>
+		<% if is_logged_in? %>
+			<%= f.submit "Add Volunteer" %>
+		<% else %>
+			<%= f.submit "Sign Up!" %>
+		<% end %>
 	<% end %>
 
 
