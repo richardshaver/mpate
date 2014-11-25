@@ -19,6 +19,20 @@ class CompetitorsController < ApplicationController
     end
 	end
 
+  # Add another controller method to render the badges
+  # CSV file for download.
+
+  def badges
+    @competitors=Competitor.all
+    respond_to do |format|
+      format.csv do
+        filename = "competitor-badges-" + Time.now.strftime("%m-%e-%Y")
+        headers['Content-Disposition'] = "attachment; filename=\"#{filename}\""
+        headers['Content-Type'] ||= 'text/csv'
+      end
+    end
+  end
+
 	def new
 		@competitor=Competitor.new
 	end

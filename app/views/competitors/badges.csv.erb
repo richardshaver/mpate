@@ -1,0 +1,25 @@
+<% headers = [
+	'First Name',
+	'Last Name',
+	'School',
+	'Team Number',
+	'Team Color'
+] %>
+
+<%= CSV.generate_line headers %>
+<% @competitors.each do |competitor| %>
+<% 
+	if competitor.team.nil?
+    	team_number = "n/a"
+		team_color = "n/a"
+	else
+		team_number = competitor.team.number
+		team_color = competitor.team.color
+	end
+%><%= CSV.generate_line([
+  	competitor.first_name,
+  	competitor.last_name,
+  	competitor.school.school_name,
+  	team_number,
+  	team_color
+]) %><% end %>

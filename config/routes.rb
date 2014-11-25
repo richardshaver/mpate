@@ -1,12 +1,18 @@
 Mpate::Application.routes.draw do
+
+  # We're overriding the competitor :id here, so this
+  # route must come before the competitors resource.
+  # Rountes are prioritized top-down.
   
+  get 'competitors/badges' => 'competitors#badges', as: 'badges'
+  
+  resources :competitors
   resources :teams
   resources :managers
   resources :tasks
   resources :volunteers
   resources :leaders
   resources :schools
-  resources :competitors
   resources :sessions
 
   get 'login' => 'sessions#new'
