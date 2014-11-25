@@ -1,0 +1,18 @@
+<h1>Settings</h1>
+
+<%= form_for @online_status do |f| %>
+
+	<div>
+		<%=f.label :key, "Online?" %>
+		<label>
+			<%=f.radio_button :value, "yes" %>
+			Yes
+		</label>
+		<label>
+			<%=f.radio_button :value, "no" %>
+			No
+		</label>
+	</div>
+
+	<%= f.submit "Save Changes" %>
+<% end %>

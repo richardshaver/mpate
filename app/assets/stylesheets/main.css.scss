@@ -60,6 +60,16 @@ header {
 	}
 }
 
+/* Flash messages */
+
+.flash-notice {
+	background:#dfd;
+	color:#0a0;
+	margin-bottom:1em;
+	padding:1em;
+	text-align:center;
+}
+
 /* Page footer which contains back link - just give it some separation */
 footer {
 	border-top:1px solid #aaa;

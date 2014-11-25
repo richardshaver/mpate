@@ -3,6 +3,26 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  # Make sure only the manager can access the site when it's offline.
+
+  before_filter :is_offline?
+
+  def is_offline?
+    online_status = Setting.find_by(key: "online")
+    if online_status.value == "no"
+
+      # End any current logged in sessions by non-managers
+      unless is_manager?
+        session[:user] = nil
+
+        # Redirect to the root url.
+        if params[:controller] != "main" && params[:controller] != "sessions"
+          redirect_to root_path
+        end
+      end
+    end
+  end
+
   # Set up login authentication variables
   # to keep track of access permissions
 

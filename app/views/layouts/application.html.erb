@@ -31,6 +31,7 @@
           <% end %>
           <% if is_manager? %>
             <li><%= link_to "Results", results_path %></li>
+            <li><%= link_to "Settings", settings_path %></li>
           <% end %>
           <li><%= link_to "Log Out", logout_path %></li>
         <% else %>
@@ -40,6 +41,9 @@
     </nav>
   </header>
   <div id="main">
+    <% flash.each do |name, msg| %>
+      <div class="flash-<%=name%>"><%=msg%></div>
+    <% end %>
     <%= yield %>
   </div>
   <footer>

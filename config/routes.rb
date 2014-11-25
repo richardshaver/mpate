@@ -1,5 +1,6 @@
 Mpate::Application.routes.draw do
 
+  get "settings/index"
   # We're overriding the competitor :id here, so this
   # route must come before the competitors resource.
   # Rountes are prioritized top-down.
@@ -14,6 +15,7 @@ Mpate::Application.routes.draw do
   resources :leaders
   resources :schools
   resources :sessions
+  resources :settings
 
   get 'login' => 'sessions#new'
   get 'logout' => 'sessions#destroy'
