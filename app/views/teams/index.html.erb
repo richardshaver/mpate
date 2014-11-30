@@ -13,6 +13,41 @@
   <br><br>
 <% end %>
 
+<% if is_manager? %>
+  <%= link_to "Assign Teams by Number", "", class: "toggle-assignment" %>
+  <div id="team-assignment">
+    <% if @teams.count > 0 %>
+      <h5>Assign Rooms by Team Number</h5>
+      <%= form_tag assign_room_path do %>
+          <div>
+            <%= label_tag :number, "Team Number" %>
+            <%= select_tag(:number, options_for_select(1..@max_team_number), prompt: "Select A Team Number") %> 
+          </div>
+          <div>
+            <%= label_tag :room_1 %>
+            <%= select_tag(:room_1, options_for_select(@leaders.map { |leader| [leader.room, leader.room]}), prompt: "Select A Room") %> 
+          </div>
+          <div>
+            <%= label_tag :room_2 %>
+            <%= select_tag(:room_2, options_for_select(@leaders.map { |leader| [leader.room, leader.room]}), prompt: "Select A Room") %> 
+          </div>
+          <div>
+            <%= label_tag :room_3 %>
+            <%= select_tag(:room_3, options_for_select(@leaders.map { |leader| [leader.room, leader.room]}), prompt: "Select A Room") %> 
+          </div>
+          <div>
+            <%= label_tag :room_4 %>
+            <%= select_tag(:room_4, options_for_select(@leaders.map { |leader| [leader.room, leader.room]}), prompt: "Select A Room") %> 
+          </div>
+          <%= submit_tag "Assign to Room" %>
+          <br><%= link_to "Cancel", "", class: "cancel-assignment" %> 
+
+      <% end %>
+    <% end %>
+  </div>
+  <br><br>
+<% end %>
+
 <!-- List the current teams in the database -->
 <% if is_manager? || params[:filter] %>
   <% if @teams.count > 0 %>
@@ -84,3 +119,4 @@
   <%= link_to "Download as CSV", teams_path(format: "csv"), class: "btn" %>
   <%= link_to "Reset Teams", reset_teams_path, method: :delete, confirm: "Are you sure?", class: "btn btn-delete" %>
 <% end %>
+
