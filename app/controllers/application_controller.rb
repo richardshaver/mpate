@@ -63,4 +63,10 @@ class ApplicationController < ActionController::Base
   helper_method :is_school?
   helper_method :is_taskmaster?
 
+  def require_school_password?
+    Setting.find_by(key: "require_school_password").value == "yes"
+  end
+
+  helper_method :require_school_password?
+
 end

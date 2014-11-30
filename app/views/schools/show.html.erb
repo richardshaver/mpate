@@ -3,8 +3,10 @@
 <!-- Display school information -->
 <table border="0" cellspacing="0" cellpadding="3" class="alt">
 	<tr><th>School Name:</th><td><%= @school.school_name %></td></tr>
-	<tr><th>Username:</th><td><%= @school.user_name %></td></tr>
-	<tr><th>Password:</th><td><%= @school.password %></td></tr>
+	<% if require_school_password? %>
+		<tr><th>Username:</th><td><%= @school.user_name %></td></tr>
+		<tr><th>Password:</th><td><%= @school.password %></td></tr>
+	<% end %>
 	<tr><th>Address Line 1:</th><td><%= @school.address_line_1 %></td></tr>
 	<tr><th>Address Line 2:</th><td><%= @school.address_line_2 %></td></tr>
 	<tr><th>City:</th><td><%= @school.city %></td></tr>

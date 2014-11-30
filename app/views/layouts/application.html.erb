@@ -38,6 +38,10 @@
           <li><%= link_to "Log Out", logout_path %></li>
         <% else %>
           <li><%= link_to "Log In", login_path %></li>
+          <% if !require_school_password? %>
+            <li><%= link_to "School Signup", new_school_path %></li>
+            <li><%= link_to "Competitor Signup", new_competitor_path %></li>
+          <% end %>
           <li><%= link_to "Volunteer Signup", new_volunteer_path %></li>
         <% end %>
       </ul>

@@ -11,7 +11,13 @@ class CompetitorsController < ApplicationController
 		@competitors=Competitor.all
 
     respond_to do |format|
-      format.html
+      format.html do
+        if is_logged_in?
+          render "competitors/index"
+        else
+          render "competitors/thanks"
+        end
+      end
       format.csv do
         filename = "mpate-" + params[:controller] + "-" + Time.now.strftime("%m-%e-%Y")
         headers['Content-Disposition'] = "attachment; filename=\"#{filename}\""

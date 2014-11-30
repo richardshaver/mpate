@@ -1,18 +1,30 @@
 <h1>Settings</h1>
 
-<%= form_for @online_status do |f| %>
+<%= form_tag save_all_settings_path do %>
 
 	<div>
-		<%=f.label :key, "Online?" %>
-		<label>
-			<%=f.radio_button :value, "yes" %>
-			Yes
-		</label>
-		<label>
-			<%=f.radio_button :value, "no" %>
-			No
-		</label>
+		<strong>Online?</strong><br>
+		<% if @online == "yes" %>
+			<label><%=radio_button_tag :online, "yes", checked: true %> Yes</label>
+			<label><%=radio_button_tag :online, "no" %> No</label>
+		<% else %>
+			<label><%=radio_button_tag :online, "yes" %> Yes</label>
+			<label><%=radio_button_tag :online, "no", checked: true %> No</label>
+		<% end %>
+	</div>
+	<br>
+	<div>
+		<strong>Require School Password?</strong><br>
+		<% if @require_school_password == "yes" %>
+			<label><%=radio_button_tag :require_school_password, "yes", checked: true %> Yes</label>
+			<label><%=radio_button_tag :require_school_password, "no" %> No</label>
+		<% else %>
+			<label><%=radio_button_tag :require_school_password, "yes" %> Yes</label>
+			<label><%=radio_button_tag :require_school_password, "no", checked: true %> No</label>
+		<% end %>
 	</div>
 
-	<%= f.submit "Save Changes" %>
+
+	<%= submit_tag "Save Changes" %>
 <% end %>
+

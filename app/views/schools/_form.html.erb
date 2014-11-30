@@ -11,14 +11,16 @@
 		</div>
 	<% end %>
 	<!-- Display for fields for data entry, prepopulated if data already exists -->
-	<div>
-		<%= f.label :user_name %>
-		<%= f.text_field :user_name %>
-	</div>
-	<div>
-		<%= f.label :password %>
-		<%= f.text_field :password %>
-	</div>
+	<% if require_school_password? %>
+		<div>
+			<%= f.label :user_name %>
+			<%= f.text_field :user_name %>
+		</div>
+		<div>
+			<%= f.label :password %>
+			<%= f.text_field :password %>
+		</div>
+	<% end %>
 	<div>
 		<%= f.label :school_name %>
 		<%= f.text_field :school_name %>

@@ -8,6 +8,7 @@ Mpate::Application.routes.draw do
   get 'competitors/badges' => 'competitors#badges', as: 'badges'
   get 'teams/setup' => 'teams#setup', as: 'setup_teams'
   post 'teams/assign_room' => 'teams#assign_room', as: 'assign_room'
+  post 'settings/save_all' => 'settings#save_all', as: 'save_all_settings'
 
   delete 'competitors/reset' => 'competitors#reset', as: 'reset_competitors'
   delete 'leaders/reset' => 'leaders#reset', as: 'reset_leaders'
