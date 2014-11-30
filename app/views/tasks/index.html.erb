@@ -23,4 +23,5 @@
 <br>
 <% if is_manager? %>
   <%= link_to "Download as CSV", tasks_path(format: "csv"), class: "btn" %>
+  <%= link_to "Reset Tasks", reset_tasks_path, method: :delete, confirm: "Are you sure?", class: "btn btn-delete" %>
 <% end %>

@@ -19,9 +19,13 @@
     <table border="0" cellspacing="0" cellpadding="0">
       <thead>
         <tr>
-          <th width="50%">Name</th>
-          <th width="10%">Members</th>
-          <th width="10%">Score</th>
+          <th width="10%">Name</th>
+          <th width="10%">Room 1</th>
+          <th width="10%">Room 2</th>
+          <th width="10%">Room 3</th>
+          <th width="10%">Room 4</th>
+          <th class="align-center" width="10%">Members</th>
+          <th class="align-center" width="10%">Score</th>
           <th width="30%">&nbsp;</th>
         </tr>
       </thead>
@@ -29,11 +33,15 @@
         <% @teams.each do |team| %>
           <tr>
             <td><%= team.team_name %></td>
-            <td><%= team.competitors.count %></td>
+            <td><%= team.room_1 %></td>
+            <td><%= team.room_2 %></td>
+            <td><%= team.room_3 %></td>
+            <td><%= team.room_4 %></td>
+            <td class="align-center"><%= team.competitors.count %></td>
             <% if params[:filter] %>
             <td colspan="2">
             <% else %>
-            <td>
+            <td class="align-center">
             <% end %>
               <% if params[:filter] %>
                 <%= form_for team do |f| %>
@@ -72,5 +80,7 @@
 <% end %>
 <br>
 <% if is_manager? %>
+  <%= link_to "Setup Teams", setup_teams_path, class: "btn btn-new" %>
   <%= link_to "Download as CSV", teams_path(format: "csv"), class: "btn" %>
+  <%= link_to "Reset Teams", reset_teams_path, method: :delete, confirm: "Are you sure?", class: "btn btn-delete" %>
 <% end %>

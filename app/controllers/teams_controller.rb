@@ -1,5 +1,6 @@
 class TeamsController < ApplicationController
   require 'csv'
+  include Resetter
 
 	# Set up the different controllers, so we can 
 	# call them when we need to do specific actions
@@ -10,23 +11,20 @@ class TeamsController < ApplicationController
 			leader = Leader.find(session[:user])
 
 			if params[:filter] == "room_1"
-				@teams = Team.where(room_1: leader.room)
+				@teams = Team.where(room_1: leader.room).order(color: :asc).order(number: :asc)
 			elsif params[:filter] == "room_2"
-				@teams = Team.where(room_2: leader.room)
+				@teams = Team.where(room_2: leader.room).order(color: :asc).order(number: :asc)
 			elsif params[:filter] == "room_3"
-				@teams = Team.where(room_3: leader.room)
+				@teams = Team.where(room_3: leader.room).order(color: :asc).order(number: :asc)
 			elsif params[:filter] == "room_4"
-				@teams = Team.where(room_4: leader.room)
+				@teams = Team.where(room_4: leader.room).order(color: :asc).order(number: :asc)
 			else
-				@teams=Team.all
+				@teams=Team.all.order(color: :asc).order(number: :asc)
 			end
 		else
-			@teams=Team.all
+			@teams=Team.all.order(color: :asc).order(number: :asc)
      		@active_btn = ""
 		end
-
-
-
 
 	    respond_to do |format|
 	      format.html
@@ -85,6 +83,24 @@ class TeamsController < ApplicationController
   def results
   	@teams = Team.all
   end
+
+  def setup
+  	colors = ["Black", "Blue", "Green", "Red", "Yellow", "Orange"]
+
+	colors.each do |c|
+		25.times do |i|
+			n = i+1
+			t = Team.new
+			t.color = c
+			t.number = n
+			if Team.where(color: c).where(number: n).empty?
+				t.save!
+			end
+		end
+	end
+	redirect_to teams_path
+  end
+
 
 	# List the only information allowed to be passed, to aid in security
 

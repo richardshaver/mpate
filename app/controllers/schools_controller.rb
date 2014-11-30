@@ -1,5 +1,6 @@
 class SchoolsController < ApplicationController
   require 'csv'
+  include Resetter
 
   # Set up the different controllers, so we can 
   # call them when we need to do specific actions

@@ -1,5 +1,6 @@
 class CompetitorsController < ApplicationController
   require 'csv'
+  include Resetter
 
   before_action :set_schools_and_teams, except: [:index, :show, :destroy]
 
@@ -83,6 +84,7 @@ class CompetitorsController < ApplicationController
     @schools = School.all.order(school_name: :asc)
     @teams = Team.all.order(:color, :number)
   end
+
 
   # List the only information allowed to be passed, to aid in security
 

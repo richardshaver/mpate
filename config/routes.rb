@@ -6,7 +6,15 @@ Mpate::Application.routes.draw do
   # Rountes are prioritized top-down.
   
   get 'competitors/badges' => 'competitors#badges', as: 'badges'
-  
+  get 'teams/setup' => 'teams#setup', as: 'setup_teams'
+
+  delete 'competitors/reset' => 'competitors#reset', as: 'reset_competitors'
+  delete 'leaders/reset' => 'leaders#reset', as: 'reset_leaders'
+  delete 'schools/reset' => 'schools#reset', as: 'reset_schools'
+  delete 'tasks/reset' => 'tasks#reset', as: 'reset_tasks'
+  delete 'teams/reset' => 'teams#reset', as: 'reset_teams'
+  delete 'volunteers/reset' => 'volunteers#reset', as: 'reset_volunteers'
+
   resources :competitors
   resources :teams
   resources :managers

@@ -28,3 +28,4 @@
 </table>
 <br>
 <%= link_to "Download as CSV", volunteers_path(format: "csv"), class: "btn" %>
+<%= link_to "Reset Volunteers", reset_volunteers_path, method: :delete, confirm: "Are you sure?", class: "btn btn-delete" %>

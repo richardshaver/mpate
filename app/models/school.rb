@@ -2,7 +2,7 @@ class School < ActiveRecord::Base
 
 	# Each school will have several students
 	
-	has_many :competitors
+	has_many :competitors, dependent: :destroy
 
 	# Set up data validation for our forms
 

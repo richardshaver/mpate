@@ -1,5 +1,6 @@
 class LeadersController < ApplicationController
   require 'csv'
+  include Resetter
 
 	def index
 		@leaders=Leader.all
