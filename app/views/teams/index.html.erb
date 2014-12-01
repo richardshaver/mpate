@@ -14,10 +14,10 @@
 <% end %>
 
 <% if is_manager? %>
-  <%= link_to "Assign Teams by Number", "", class: "toggle-assignment" %>
+  <%= link_to "Assign Teams to Rooms", "", class: "toggle-assignment" %>
   <div id="team-assignment">
     <% if @teams.count > 0 %>
-      <h5>Assign Rooms by Team Number</h5>
+      <h5>Assign Rooms to Rooms</h5>
       <%= form_tag assign_room_path do %>
           <div>
             <%= label_tag :number, "Team Number" %>
