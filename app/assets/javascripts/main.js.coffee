@@ -6,8 +6,8 @@ jQuery ->
 	  $('.flash-notice').slideUp()
   ), 3000
 
-  $('body').on 'click', '.toggle-assignment', (e) ->
-  	e.preventDefault()
+  $('body').on 'click', '.toggle-assignment', (evt) ->
+  	evt.preventDefault()
   	$('#team-assignment').slideDown()
   	$(this).hide()
 
