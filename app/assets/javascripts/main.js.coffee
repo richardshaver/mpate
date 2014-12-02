@@ -1,6 +1,6 @@
 jQuery ->
 
-  $('.results').DataTable()
+  $('#results').DataTable({paging: false})
 
   setTimeout ( ->
 	  $('.flash-notice').slideUp()
@@ -10,7 +10,6 @@ jQuery ->
   	evt.preventDefault()
   	$('#team-assignment').slideDown()
   	$(this).hide()
-
   .on 'click', '.cancel-assignment', (e) ->
   	e.preventDefault()
   	$('#team-assignment').slideUp ->
