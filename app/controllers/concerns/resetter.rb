@@ -2,11 +2,26 @@ module Resetter
 	extend ActiveSupport::Concern
 
 	def reset
+		case params[:controller]
+			when "competitors"
+				redirect_destination = competitors_path
+			when "leaders"
+				redirect_destination = leaders_path
+			when "schools"
+				redirect_destination = schools_path
+			when "tasks"
+				redirect_destination = tasks_path
+			when "teams"
+				redirect_destination = teams_path
+			when "volunteers"
+				redirect_destination = volunteers_path
+		end
+
 		if is_manager?
 		    ActiveRecord::Base.connection.execute("TRUNCATE TABLE #{params[:controller]}")
-		    redirect_to competitors_path, notice: "Reset #{params[:controller].capitalize}"
+		    redirect_to redirect_destination, notice: "Reset #{params[:controller].capitalize}"
 	   	else
-	   		redirect_to competitors_path
+	   		redirect_to redirect_destination
 		end
 	end
 end
