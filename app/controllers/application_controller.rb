@@ -23,6 +23,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def is_online?
+    online_status = Setting.find_by(key: "online")
+    online_status.value == "yes"
+  end
+
   # Set up login authentication variables
   # to keep track of access permissions
 
@@ -62,6 +67,7 @@ class ApplicationController < ActionController::Base
   helper_method :is_leader?
   helper_method :is_school?
   helper_method :is_taskmaster?
+  helper_method :is_online?
 
   def require_school_password?
     Setting.find_by(key: "require_school_password").value == "yes"

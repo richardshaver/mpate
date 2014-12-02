@@ -15,7 +15,13 @@
       <tr>
         <td><%= manager.user_name %></td>
         <td><%= manager.email %></td>
-        <td><%= link_to "Show", manager_path(manager), class: "btn btn-show" %> <%= link_to "Edit", edit_manager_path(manager), class: "btn btn-edit" %> <%= link_to "Delete", manager_path(manager), method: :delete, confirm: "Are you sure?", class: "btn btn-delete" %></td>
+        <td>
+          <%= link_to "Show", manager_path(manager), class: "btn btn-show" %> 
+          <%= link_to "Edit", edit_manager_path(manager), class: "btn btn-edit" %> 
+          <% if manager.id != session[:user] %>
+            <%= link_to "Delete", manager_path(manager), method: :delete, confirm: "Are you sure?", class: "btn btn-delete" %>
+          <% end %>
+        </td>
       </tr>
     <%end%>
   </tbody>

@@ -6,7 +6,7 @@ class TasksController < ApplicationController
 	# call them when we need to do specific actions
 
 	def index
-		@tasks=Task.all
+		@tasks=Task.all.order("name ASC")
 
 	    respond_to do |format|
 	      format.html
@@ -58,7 +58,7 @@ class TasksController < ApplicationController
 
 	def model_params
 		params.require(:task).permit(
-			:name
-			)
+		  :name
+		)
 	end
 end

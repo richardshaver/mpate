@@ -3,7 +3,7 @@ class LeadersController < ApplicationController
   include Resetter
 
 	def index
-		@leaders=Leader.all
+		@leaders=Leader.all.order("first_name ASC, last_name ASC")
 
 	    respond_to do |format|
 	      format.html

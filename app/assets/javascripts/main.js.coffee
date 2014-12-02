@@ -1,5 +1,10 @@
 jQuery ->
-  $('#results').DataTable({paging: false})
+  $('#results').DataTable({
+    paging: false,
+    "columnDefs": [
+      { "type": "natural", targets: 0 }
+    ]
+  })
 
   $('body').on 'click', '.toggle-assignment', (e) ->
     e.preventDefault()

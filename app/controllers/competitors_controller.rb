@@ -8,7 +8,7 @@ class CompetitorsController < ApplicationController
   # call them when we need to do specific actions
 
 	def index
-		@competitors=Competitor.all
+		@competitors=Competitor.all.order("first_name ASC, last_name ASC")
 
     respond_to do |format|
       format.html do

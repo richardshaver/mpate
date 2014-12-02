@@ -6,7 +6,7 @@ class VolunteersController < ApplicationController
   # call them when we need to do specific actions
 
 	def index
-		@volunteers=Volunteer.all
+		@volunteers=Volunteer.all.order("first_name ASC, last_name ASC")
 
     respond_to do |format|
       format.html do

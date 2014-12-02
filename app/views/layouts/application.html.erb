@@ -38,11 +38,13 @@
           <li><%= link_to "Log Out", logout_path %></li>
         <% else %>
           <li><%= link_to "Log In", login_path %></li>
-          <% if !require_school_password? %>
+          <% if !require_school_password? && is_online? %>
             <li><%= link_to "School Signup", new_school_path %></li>
             <li><%= link_to "Competitor Signup", new_competitor_path %></li>
           <% end %>
-          <li><%= link_to "Volunteer Signup", new_volunteer_path %></li>
+          <% if is_online? %>
+            <li><%= link_to "Volunteer Signup", new_volunteer_path %></li>
+          <% end %>
         <% end %>
       </ul>
     </nav>
@@ -52,6 +54,10 @@
       <div class="flash-<%=name%>"><%=msg%></div>
     <% end %>
     <%= yield %>
+    <% unless is_online? %>
+      <br>
+      <p class="align-center">The system is currently offline.</p>
+    <% end %>
   </div>
   <footer>
     <%= link_to "Home", root_path %>
