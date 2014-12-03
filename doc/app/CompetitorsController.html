@@ -157,7 +157,7 @@
 
           
           <div class="method-source-code" id="badges-source">
-            <pre><span class="ruby-comment"># File app/controllers/competitors_controller.rb, line 32</span>
+            <pre><span class="ruby-comment"># File app/controllers/competitors_controller.rb, line 35</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">badges</span>
   <span class="ruby-ivar">@competitors</span>=<span class="ruby-constant">Competitor</span>.<span class="ruby-identifier">all</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
@@ -191,15 +191,16 @@
 
         <div class="method-description">
           
-          <p>If logged in as school, go directly to  specific school infomation page
+          <p>If logged in as school, go directly to specific school infomation page
 Otherwise we show the total list of competitors as only other way to see
-this page is to be  logged in as a manager</p>
+this page is to be  logged in as a manager This redirect is if form
+correctly filled out. If not, then we return to the form</p>
           
           
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/competitors_controller.rb, line 53</span>
+            <pre><span class="ruby-comment"># File app/controllers/competitors_controller.rb, line 56</span>
   <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
           <span class="ruby-ivar">@competitor</span>=<span class="ruby-constant">Competitor</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">model_params</span>)
           <span class="ruby-keyword">if</span> <span class="ruby-ivar">@competitor</span>.<span class="ruby-identifier">save</span>
@@ -235,13 +236,14 @@ this page is to be  logged in as a manager</p>
 
         <div class="method-description">
           
-          
+          <p>Find the correct competitor and remove from database (Called when we delete
+a record)</p>
           
           
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/competitors_controller.rb, line 83</span>
+            <pre><span class="ruby-comment"># File app/controllers/competitors_controller.rb, line 90</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
       <span class="ruby-ivar">@competitor</span> = <span class="ruby-constant">Competitor</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
       <span class="ruby-ivar">@competitor</span>.<span class="ruby-identifier">destroy</span>
@@ -270,13 +272,14 @@ this page is to be  logged in as a manager</p>
 
         <div class="method-description">
           
-          
+          <p>Find the information of a specific competitor, so we can fill out the
+fields on the form when we go to edit</p>
           
           
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/competitors_controller.rb, line 70</span>
+            <pre><span class="ruby-comment"># File app/controllers/competitors_controller.rb, line 75</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@competitor</span> = <span class="ruby-constant">Competitor</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 <span class="ruby-keyword">end</span></pre>
@@ -303,19 +306,21 @@ this page is to be  logged in as a manager</p>
 
         <div class="method-description">
           
-          <p>Set up the different controllers, so we can  call them when we need to do
-specific actions</p>
+          <p>Main index page for competitors, which lists them alphabetically by first
+name</p>
           
           
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/competitors_controller.rb, line 10</span>
+            <pre><span class="ruby-comment"># File app/controllers/competitors_controller.rb, line 12</span>
     <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-            <span class="ruby-ivar">@competitors</span>=<span class="ruby-constant">Competitor</span>.<span class="ruby-identifier">all</span>
+            <span class="ruby-ivar">@competitors</span>=<span class="ruby-constant">Competitor</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&quot;first_name ASC, last_name ASC&quot;</span>)
 
 <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
   <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-comment"># If logged in as user, then it displays the list of competitors</span>
+    <span class="ruby-comment"># If not, then we got here through open signup, and display thanks for signing up</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">is_logged_in?</span>
       <span class="ruby-identifier">render</span> <span class="ruby-string">&quot;competitors/index&quot;</span>
     <span class="ruby-keyword">else</span>
@@ -358,7 +363,7 @@ specific actions</p>
 
           
           <div class="method-source-code" id="model_params-source">
-            <pre><span class="ruby-comment"># File app/controllers/competitors_controller.rb, line 97</span>
+            <pre><span class="ruby-comment"># File app/controllers/competitors_controller.rb, line 105</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">model_params</span>
         <span class="ruby-identifier">params</span>.<span class="ruby-identifier">require</span>(<span class="ruby-value">:competitor</span>).<span class="ruby-identifier">permit</span>(
         <span class="ruby-value">:first_name</span>,
@@ -397,13 +402,13 @@ specific actions</p>
 
         <div class="method-description">
           
-          
+          <p>Renders the form for new competitors</p>
           
           
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/competitors_controller.rb, line 43</span>
+            <pre><span class="ruby-comment"># File app/controllers/competitors_controller.rb, line 47</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
         <span class="ruby-ivar">@competitor</span>=<span class="ruby-constant">Competitor</span>.<span class="ruby-identifier">new</span>
 <span class="ruby-keyword">end</span></pre>
@@ -430,13 +435,13 @@ specific actions</p>
 
         <div class="method-description">
           
-          
+          <p>This will find and display schools and teams in ascending order</p>
           
           
 
           
           <div class="method-source-code" id="set_schools_and_teams-source">
-            <pre><span class="ruby-comment"># File app/controllers/competitors_controller.rb, line 89</span>
+            <pre><span class="ruby-comment"># File app/controllers/competitors_controller.rb, line 97</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_schools_and_teams</span>
   <span class="ruby-ivar">@schools</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">order</span>(<span class="ruby-identifier">school_name</span><span class="ruby-operator">:</span> <span class="ruby-value">:asc</span>)
   <span class="ruby-ivar">@teams</span> = <span class="ruby-constant">Team</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:color</span>, <span class="ruby-value">:number</span>)
@@ -464,13 +469,14 @@ specific actions</p>
 
         <div class="method-description">
           
-          
+          <p>Used to find the information of a specific competitor when we want to see
+his information</p>
           
           
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/competitors_controller.rb, line 66</span>
+            <pre><span class="ruby-comment"># File app/controllers/competitors_controller.rb, line 70</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-ivar">@competitor</span> = <span class="ruby-constant">Competitor</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 <span class="ruby-keyword">end</span></pre>
@@ -497,13 +503,14 @@ specific actions</p>
 
         <div class="method-description">
           
-          
+          <p>If we got a successful form filled out, update the competitor. Otherwise,
+redirect to the form again</p>
           
           
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/competitors_controller.rb, line 74</span>
+            <pre><span class="ruby-comment"># File app/controllers/competitors_controller.rb, line 80</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@competitor</span> = <span class="ruby-constant">Competitor</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@competitor</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">model_params</span>)

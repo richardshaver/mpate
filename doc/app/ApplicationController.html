@@ -81,6 +81,8 @@
     
     <li ><a href="#method-i-is_offline-3F">#is_offline?</a>
     
+    <li ><a href="#method-i-is_online-3F">#is_online?</a>
+    
     <li ><a href="#method-i-is_school-3F">#is_school?</a>
     
     <li ><a href="#method-i-is_taskmaster-3F">#is_taskmaster?</a>
@@ -134,13 +136,13 @@
 
         <div class="method-description">
           
-          
+          <p>If user is logged in, are they logged in as a room leader?</p>
           
           
 
           
           <div class="method-source-code" id="is_leader-3F-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 42</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 51</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_leader?</span>
       <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">is_logged_in?</span>
       <span class="ruby-keyword">return</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:type</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;leader&quot;</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:taskmaster</span>] <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>
@@ -168,13 +170,13 @@
 
         <div class="method-description">
           
-          <p>Set up login authentication variables to keep track of access permissions</p>
+          <p>Check if the user is currently logged in</p>
           
           
 
           
           <div class="method-source-code" id="is_logged_in-3F-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 29</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 36</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_logged_in?</span>
       <span class="ruby-keyword">if</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:user</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:user</span>] <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span>
               <span class="ruby-keyword">true</span>
@@ -205,13 +207,13 @@
 
         <div class="method-description">
           
-          
+          <p>If user is logged in, are they logged in as a manager?</p>
           
           
 
           
           <div class="method-source-code" id="is_manager-3F-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 37</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 45</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_manager?</span>
       <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">is_logged_in?</span>
       <span class="ruby-keyword">return</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:type</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;manager&quot;</span>
@@ -239,13 +241,13 @@
 
         <div class="method-description">
           
-          
+          <p>Variable to keep track of whether the system is offline</p>
           
           
 
           
           <div class="method-source-code" id="is_offline-3F-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 10</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 11</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_offline?</span>
   <span class="ruby-identifier">online_status</span> = <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">key</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;online&quot;</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">online_status</span>.<span class="ruby-identifier">value</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;no&quot;</span>
@@ -271,6 +273,40 @@
       </div>
 
     
+      <div id="method-i-is_online-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_online?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The opposite of is_offline, but easier to use in some places in the code</p>
+          
+          
+
+          
+          <div class="method-source-code" id="is_online-3F-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 28</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_online?</span>
+  <span class="ruby-identifier">online_status</span> = <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">key</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;online&quot;</span>)
+  <span class="ruby-identifier">online_status</span>.<span class="ruby-identifier">value</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;yes&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
       <div id="method-i-is_school-3F" class="method-detail ">
         
         <div class="method-heading">
@@ -284,13 +320,14 @@
 
         <div class="method-description">
           
-          
+          <p>If user is logged in, are they logged in as a school level aurhority (for
+school and competitor signups)</p>
           
           
 
           
           <div class="method-source-code" id="is_school-3F-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 47</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 57</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_school?</span>
       <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">is_logged_in?</span>
       <span class="ruby-keyword">return</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:type</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;school&quot;</span>
@@ -318,13 +355,13 @@
 
         <div class="method-description">
           
-          
+          <p>If the user is logged in, are they logged in as a taskmaster?</p>
           
           
 
           
           <div class="method-source-code" id="is_taskmaster-3F-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 52</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 63</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_taskmaster?</span>
       <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">is_logged_in?</span>
       <span class="ruby-keyword">return</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:taskmaster</span>] <span class="ruby-operator">==</span> <span class="ruby-keyword">true</span>
@@ -352,13 +389,13 @@
 
         <div class="method-description">
           
-          
+          <p>Keeps track of whether schools and competitors need to log in to signup</p>
           
           
 
           
           <div class="method-source-code" id="require_school_password-3F-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 66</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 79</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">require_school_password?</span>
   <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">key</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;require_school_password&quot;</span>).<span class="ruby-identifier">value</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;yes&quot;</span>
 <span class="ruby-keyword">end</span></pre>

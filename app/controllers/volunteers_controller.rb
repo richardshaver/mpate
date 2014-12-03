@@ -5,6 +5,8 @@ class VolunteersController < ApplicationController
   # Set up the different controllers, so we can 
   # call them when we need to do specific actions
 
+  # Default view, if logged in, lists the volunteers in alphabetical order.
+  # If not logged in, the view is a thank you for signing up (as got here from signup page)
 	def index
 		@volunteers=Volunteer.all.order("first_name ASC, last_name ASC")
 
@@ -24,11 +26,14 @@ class VolunteersController < ApplicationController
     end
 	end
 
+  # Display form to fill out for new volunteers to sign up
 	def new
 		@volunteer=Volunteer.new
     @tasks = Task.all.order(name: :asc)
 	end
 
+  # If signup information is correct, redisplay main index page
+  # Otherwise, reshow the form to get corrections
 	def create
 		@volunteer=Volunteer.new(model_params)
 		if @volunteer.save
@@ -39,15 +44,19 @@ class VolunteersController < ApplicationController
 		end
 	end
 
+  # Show the information for specific volunteer
   def show
     @volunteer = Volunteer.find(params[:id])
   end
 
+  # Show editing form for specific volunteer with pre-populated data
   def edit
     @volunteer = Volunteer.find(params[:id])
     @tasks = Task.all.order(name: :asc)
   end
 
+  # If edited information is valid, redirect to volunteer index
+  # Otherwise, re-show the form so we can get corrected information
   def update
     @volunteer = Volunteer.find(params[:id])
     if @volunteer.update(model_params)
@@ -58,6 +67,7 @@ class VolunteersController < ApplicationController
     end
   end
 
+  # When deleting a record, only delete the information for the volunteer selected
   def destroy
   	@volunteer = Volunteer.find(params[:id])
   	@volunteer.destroy

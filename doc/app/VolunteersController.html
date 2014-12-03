@@ -147,13 +147,14 @@
 
         <div class="method-description">
           
-          
+          <p>If signup information is correct, redisplay main index page Otherwise,
+reshow the form to get corrections</p>
           
           
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/volunteers_controller.rb, line 32</span>
+            <pre><span class="ruby-comment"># File app/controllers/volunteers_controller.rb, line 37</span>
   <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
           <span class="ruby-ivar">@volunteer</span>=<span class="ruby-constant">Volunteer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">model_params</span>)
           <span class="ruby-keyword">if</span> <span class="ruby-ivar">@volunteer</span>.<span class="ruby-identifier">save</span>
@@ -186,13 +187,14 @@
 
         <div class="method-description">
           
-          
+          <p>When deleting a record, only delete the information for the volunteer
+selected</p>
           
           
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/volunteers_controller.rb, line 61</span>
+            <pre><span class="ruby-comment"># File app/controllers/volunteers_controller.rb, line 71</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
       <span class="ruby-ivar">@volunteer</span> = <span class="ruby-constant">Volunteer</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
       <span class="ruby-ivar">@volunteer</span>.<span class="ruby-identifier">destroy</span>
@@ -221,13 +223,13 @@
 
         <div class="method-description">
           
-          
+          <p>Show editing form for specific volunteer with pre-populated data</p>
           
           
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/volunteers_controller.rb, line 46</span>
+            <pre><span class="ruby-comment"># File app/controllers/volunteers_controller.rb, line 53</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@volunteer</span> = <span class="ruby-constant">Volunteer</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@tasks</span> = <span class="ruby-constant">Task</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">order</span>(<span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-value">:asc</span>)
@@ -255,16 +257,17 @@
 
         <div class="method-description">
           
-          <p>Set up the different controllers, so we can  call them when we need to do
-specific actions</p>
+          <p>Default view, if logged in, lists the volunteers in alphabetical order. If
+not logged in, the view is a thank you for signing up (as got here from
+signup page)</p>
           
           
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/volunteers_controller.rb, line 8</span>
+            <pre><span class="ruby-comment"># File app/controllers/volunteers_controller.rb, line 10</span>
     <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-            <span class="ruby-ivar">@volunteers</span>=<span class="ruby-constant">Volunteer</span>.<span class="ruby-identifier">all</span>
+            <span class="ruby-ivar">@volunteers</span>=<span class="ruby-constant">Volunteer</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&quot;first_name ASC, last_name ASC&quot;</span>)
 
 <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
   <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> <span class="ruby-keyword">do</span>
@@ -310,7 +313,7 @@ specific actions</p>
 
           
           <div class="method-source-code" id="model_params-source">
-            <pre><span class="ruby-comment"># File app/controllers/volunteers_controller.rb, line 69</span>
+            <pre><span class="ruby-comment"># File app/controllers/volunteers_controller.rb, line 79</span>
   <span class="ruby-keyword">def</span> <span class="ruby-identifier">model_params</span>
           <span class="ruby-identifier">params</span>.<span class="ruby-identifier">require</span>(<span class="ruby-value">:volunteer</span>).<span class="ruby-identifier">permit</span>(
                   <span class="ruby-value">:msu_id</span>,
@@ -345,13 +348,13 @@ specific actions</p>
 
         <div class="method-description">
           
-          
+          <p>Display form to fill out for new volunteers to sign up</p>
           
           
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/volunteers_controller.rb, line 27</span>
+            <pre><span class="ruby-comment"># File app/controllers/volunteers_controller.rb, line 30</span>
     <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
             <span class="ruby-ivar">@volunteer</span>=<span class="ruby-constant">Volunteer</span>.<span class="ruby-identifier">new</span>
 <span class="ruby-ivar">@tasks</span> = <span class="ruby-constant">Task</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">order</span>(<span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-value">:asc</span>)
@@ -379,13 +382,13 @@ specific actions</p>
 
         <div class="method-description">
           
-          
+          <p>Show the information for specific volunteer</p>
           
           
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/volunteers_controller.rb, line 42</span>
+            <pre><span class="ruby-comment"># File app/controllers/volunteers_controller.rb, line 48</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-ivar">@volunteer</span> = <span class="ruby-constant">Volunteer</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 <span class="ruby-keyword">end</span></pre>
@@ -412,13 +415,14 @@ specific actions</p>
 
         <div class="method-description">
           
-          
+          <p>If edited information is valid, redirect to volunteer index Otherwise,
+re-show the form so we can get corrected information</p>
           
           
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/volunteers_controller.rb, line 51</span>
+            <pre><span class="ruby-comment"># File app/controllers/volunteers_controller.rb, line 60</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@volunteer</span> = <span class="ruby-constant">Volunteer</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@volunteer</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">model_params</span>)

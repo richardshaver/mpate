@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+
+  # Renders the associated login form. Empty so used default.
   def new
   end
 
@@ -18,15 +20,12 @@ class SessionsController < ApplicationController
   		@type = "school"
   	end
 
+    # If we are logged in, keep login data as we navigate the website
   	if @user && @user.password == params[:password]
   		session[:user] = @user.id
   		session[:type] = @type
 
-      # Room leaders may be set as taskmaster if they also have
-      # the ability to create and edit the tasks
-      # If they are not a taskmaster, then that room leader
-      # will not be able to manage the tasks
-
+      # Room leaders with the taskmaster security level need to be determined
   		if @type == "leader" && @user.security_level == "taskmaster"
   			session[:taskmaster] = true
   		else

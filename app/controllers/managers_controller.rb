@@ -4,6 +4,7 @@ class ManagersController < ApplicationController
   # Set up the different controllers, so we can 
   # call them when we need to do specific actions
 
+  # List the managers in the system as the default page
 	def index
 		@managers=Manager.all
 
@@ -17,10 +18,13 @@ class ManagersController < ApplicationController
     end
 	end
 
+  # Render the form to fill out when we want to add a new manager
 	def new
 		@manager=Manager.new
 	end
 
+  # If form correctly filled out, add new manager to database and redisplay list of managers
+  # Otherwise redisplay form so user can make corrections to errors
 	def create
 		@manager=Manager.new(model_params)
 		if @manager.save
@@ -30,14 +34,18 @@ class ManagersController < ApplicationController
 		end
 	end
 
+  # Find correct information when we want to see specific manager data
   def show
     @manager = Manager.find(params[:id])
   end
 
+  # Prepopulate the editing form with correct data
   def edit
     @manager = Manager.find(params[:id])
   end
 
+  # If editing successful, update record and redisplay list of managers
+  # Otherwise, redisplay form so we can get corrections 
   def update
     @manager = Manager.find(params[:id])
     if @manager.update(model_params)
@@ -47,6 +55,7 @@ class ManagersController < ApplicationController
     end
   end
 
+  # When we want to delete a record, delete the correct data
   def destroy
   	@manager = Manager.find(params[:id])
   	@manager.destroy

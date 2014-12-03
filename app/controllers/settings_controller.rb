@@ -1,9 +1,12 @@
 class SettingsController < ApplicationController
+
+  # Display the current settings
   def index
   	@online = Setting.find_by(key: "online").value
   	@require_school_password = Setting.find_by(key: "require_school_password").value
   end
 
+  # Save changes to current settings
   def save_all
   	@online = Setting.find_by(key: "online")
   	@require_school_password = Setting.find_by(key: "require_school_password")

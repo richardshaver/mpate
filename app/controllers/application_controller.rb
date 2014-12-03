@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :is_offline?
 
+  # Variable to keep track of whether the system is offline
   def is_offline?
     online_status = Setting.find_by(key: "online")
     if online_status.value == "no"
@@ -23,14 +24,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # The opposite of is_offline, but easier to use in some places in the code
   def is_online?
     online_status = Setting.find_by(key: "online")
     online_status.value == "yes"
   end
 
-  # Set up login authentication variables
-  # to keep track of access permissions
+  # Set up login authentication variables to keep track of access permissions
 
+  # Check if the user is currently logged in
   def is_logged_in?
   	if session[:user] && session[:user] != nil
   		true
@@ -39,21 +41,25 @@ class ApplicationController < ActionController::Base
   	end
   end
 
+  # If user is logged in, are they logged in as a manager?
   def is_manager?
   	return false unless is_logged_in?
   	return session[:type] == "manager"
   end
 
+  # If user is logged in, are they logged in as a room leader?
   def is_leader?
   	return false unless is_logged_in?
   	return session[:type] == "leader" && session[:taskmaster] == false
   end
 
+  # If user is logged in, are they logged in as a school level aurhority (for school and competitor signups)
   def is_school?
   	return false unless is_logged_in?
   	return session[:type] == "school"
   end
 
+  # If the user is logged in, are they logged in as a taskmaster?
   def is_taskmaster?
   	return false unless is_logged_in?
   	return session[:taskmaster] == true
@@ -69,6 +75,7 @@ class ApplicationController < ActionController::Base
   helper_method :is_taskmaster?
   helper_method :is_online?
 
+  # Keeps track of whether schools and competitors need to log in to signup
   def require_school_password?
     Setting.find_by(key: "require_school_password").value == "yes"
   end

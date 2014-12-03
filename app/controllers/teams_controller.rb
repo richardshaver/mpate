@@ -5,6 +5,8 @@ class TeamsController < ApplicationController
 	# Set up the different controllers, so we can 
 	# call them when we need to do specific actions
 
+	# Default view lists teams. But if room leader, only show teams that are assigned to your room
+	# This list is filtered by round number (each room is used in a different round)
 	def index
 		if params[:filter]
 			@active_btn = params[:filter]
@@ -43,11 +45,15 @@ class TeamsController < ApplicationController
 	    end
 	end
 
+	# Show the form to fill out for creating a new team. 
+	# Valid room numbers are those in use by room leaders.
 	def new
 		@team=Team.new
 		@leaders = Leader.all.order(room: :asc)
 	end
 
+	# If form correctly filled out, create the team and redirect to display teams.
+	# Otherwise, re-show the form so we can get corrections
 	def create
 		@team=Team.new(model_params)
 		if @team.save
@@ -58,15 +64,19 @@ class TeamsController < ApplicationController
 		end
 	end
 
+	# Show the information for the specific team selected
 	def show
 		@team = Team.find(params[:id])
 	end
 
+	# Show the form for editing, with prepopulated information
 	def edit
 	    @team = Team.find(params[:id])
 		@leaders = Leader.all.order(room: :asc)
 	end
 
+	# If edit form correctly filled out, update the team (with message about updated scores if room leader)
+	# Otherwise, reshow the form tp get corrections
 	def update
     	@team = Team.find(params[:id])
     	if @team.update(model_params)
@@ -81,16 +91,20 @@ class TeamsController < ApplicationController
     	end
   	end
 
+  	# When deleting a team, delete the correct team
 	def destroy
 		@team = Team.find(params[:id])
  		@team.destroy
  		redirect_to teams_path
 	end
 
+	# When displaying the results, we want to display the results for all teams
 	def results
  		@teams = Team.all
 	end
 
+	# Setting up new teams, from #1 to #25, in all six colors. 
+	# It will not set up the team if it already exists.
 	def setup
 	  	colors = ["Black", "Blue", "Green", "Red", "Yellow", "Orange"]
 
@@ -108,6 +122,7 @@ class TeamsController < ApplicationController
 		redirect_to teams_path
 	end
 
+	# Assign the four rooms to a given team
 	def assign_room
 		Team.update_all({room_1: params[:room_1]}, {number: params[:number]}) unless params[:room_1].blank?
 		Team.update_all({room_2: params[:room_2]}, {number: params[:number]}) unless params[:room_2].blank?

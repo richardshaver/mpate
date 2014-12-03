@@ -126,19 +126,34 @@
 
         <div class="method-description">
           
-          
+          <p>Choose redirect destinations based on current page. Page reloading</p>
           
           
 
           
           <div class="method-source-code" id="reset-source">
-            <pre><span class="ruby-comment"># File app/controllers/concerns/resetter.rb, line 4</span>
+            <pre><span class="ruby-comment"># File app/controllers/concerns/resetter.rb, line 5</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reset</span>
+        <span class="ruby-keyword">case</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:controller</span>]
+                <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;competitors&quot;</span>
+                        <span class="ruby-identifier">redirect_destination</span> = <span class="ruby-identifier">competitors_path</span>
+                <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;leaders&quot;</span>
+                        <span class="ruby-identifier">redirect_destination</span> = <span class="ruby-identifier">leaders_path</span>
+                <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;schools&quot;</span>
+                        <span class="ruby-identifier">redirect_destination</span> = <span class="ruby-identifier">schools_path</span>
+                <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;tasks&quot;</span>
+                        <span class="ruby-identifier">redirect_destination</span> = <span class="ruby-identifier">tasks_path</span>
+                <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;teams&quot;</span>
+                        <span class="ruby-identifier">redirect_destination</span> = <span class="ruby-identifier">teams_path</span>
+                <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;volunteers&quot;</span>
+                        <span class="ruby-identifier">redirect_destination</span> = <span class="ruby-identifier">volunteers_path</span>
+        <span class="ruby-keyword">end</span>
+
         <span class="ruby-keyword">if</span> <span class="ruby-identifier">is_manager?</span>
             <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">execute</span>(<span class="ruby-node">&quot;TRUNCATE TABLE #{params[:controller]}&quot;</span>)
-            <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">competitors_path</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;Reset #{params[:controller].capitalize}&quot;</span>
+            <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">redirect_destination</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;Reset #{params[:controller].capitalize}&quot;</span>
        <span class="ruby-keyword">else</span>
-               <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">competitors_path</span>
+               <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">redirect_destination</span>
         <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>

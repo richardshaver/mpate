@@ -147,13 +147,14 @@
 
         <div class="method-description">
           
-          
+          <p>If new school signup form has valid information, add to database and
+re-render page Otherwise, redisplay form so we can get corrections</p>
           
           
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 31</span>
+            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 37</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
       <span class="ruby-ivar">@school</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">model_params</span>)
       <span class="ruby-keyword">if</span> <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">save</span>
@@ -185,13 +186,13 @@
 
         <div class="method-description">
           
-          
+          <p>Ensure we delete correct school when we want to remove it from database</p>
           
           
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 57</span>
+            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 68</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
       <span class="ruby-ivar">@school</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
       <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">destroy</span>
@@ -220,13 +221,13 @@
 
         <div class="method-description">
           
-          
+          <p>Prepopulate editing form when we want to make changes to school data</p>
           
           
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 44</span>
+            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 52</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@school</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 <span class="ruby-keyword">end</span></pre>
@@ -253,19 +254,20 @@
 
         <div class="method-description">
           
-          <p>Set up the different controllers, so we can  call them when we need to do
-specific actions</p>
+          <p>Default display will list all schools in ascending order</p>
           
           
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 8</span>
+            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 9</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-      <span class="ruby-ivar">@schools</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">all</span>
+      <span class="ruby-ivar">@schools</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">order</span>(<span class="ruby-string">&quot;school_name ASC&quot;</span>)
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> <span class="ruby-keyword">do</span>
+      <span class="ruby-comment"># If school is logged in, we render the main page.</span>
+      <span class="ruby-comment"># Otherwise, they were not logged in, then school signed up on open page. Display thanks for signing up</span>
       <span class="ruby-keyword">if</span> <span class="ruby-identifier">is_logged_in?</span>
         <span class="ruby-identifier">render</span> <span class="ruby-string">&quot;schools/index&quot;</span>
       <span class="ruby-keyword">else</span>
@@ -308,7 +310,7 @@ specific actions</p>
 
           
           <div class="method-source-code" id="model_params-source">
-            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 65</span>
+            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 76</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">model_params</span>
       <span class="ruby-identifier">params</span>.<span class="ruby-identifier">require</span>(<span class="ruby-value">:school</span>).<span class="ruby-identifier">permit</span>(
               <span class="ruby-value">:school_name</span>,
@@ -346,13 +348,13 @@ specific actions</p>
 
         <div class="method-description">
           
-          
+          <p>Display form for new school to sign up</p>
           
           
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 27</span>
+            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 31</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
       <span class="ruby-ivar">@school</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">new</span>
 <span class="ruby-keyword">end</span></pre>
@@ -379,13 +381,13 @@ specific actions</p>
 
         <div class="method-description">
           
-          
+          <p>Show correct information when we want to see data on a specific school</p>
           
           
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 40</span>
+            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 47</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-ivar">@school</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 <span class="ruby-keyword">end</span></pre>
@@ -412,13 +414,14 @@ specific actions</p>
 
         <div class="method-description">
           
-          
+          <p>If editing is successful, save changes and return to main page Otherwise,
+return to form to get corrections</p>
           
           
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 48</span>
+            <pre><span class="ruby-comment"># File app/controllers/schools_controller.rb, line 58</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@school</span> = <span class="ruby-constant">School</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@school</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">model_params</span>)

@@ -124,13 +124,13 @@
 
         <div class="method-description">
           
-          
+          <p>Display the current settings</p>
           
           
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/settings_controller.rb, line 2</span>
+            <pre><span class="ruby-comment"># File app/controllers/settings_controller.rb, line 4</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
       <span class="ruby-ivar">@online</span> = <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">key</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;online&quot;</span>).<span class="ruby-identifier">value</span>
       <span class="ruby-ivar">@require_school_password</span> = <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">key</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;require_school_password&quot;</span>).<span class="ruby-identifier">value</span>
@@ -158,13 +158,13 @@
 
         <div class="method-description">
           
-          
+          <p>Save changes to current settings</p>
           
           
 
           
           <div class="method-source-code" id="save_all-source">
-            <pre><span class="ruby-comment"># File app/controllers/settings_controller.rb, line 7</span>
+            <pre><span class="ruby-comment"># File app/controllers/settings_controller.rb, line 10</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">save_all</span>
       <span class="ruby-ivar">@online</span> = <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">key</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;online&quot;</span>)
       <span class="ruby-ivar">@require_school_password</span> = <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">key</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;require_school_password&quot;</span>)

@@ -5,6 +5,7 @@
   <% end %>
 </h1>
 
+<!-- Room leaders can sort list based on current round, so they only see the teams in their room for selected round -->
 <% if is_leader? %>
   <%= link_to "Round 1", teams_path(filter: "room_1"), class: "btn " + ((@active_btn == "room_1") ? "btn-show" : "") %>
   <%= link_to "Round 2", teams_path(filter: "room_2"), class: "btn " + ((@active_btn == "room_2") ? "btn-show" : "") %>
@@ -13,6 +14,7 @@
   <br><br>
 <% end %>
 
+<!-- Manager can mass-assign all teams with same team-number to rooms -->
 <% if is_manager? %>
   <%= link_to "Assign Teams to Rooms", "", class: "toggle-assignment" %>
   <div id="team-assignment">

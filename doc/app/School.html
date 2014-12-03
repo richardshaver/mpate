@@ -122,13 +122,14 @@
 
         <div class="method-description">
           
-          
+          <p>This checks if the schools need to log in to sign up competitors, or if
+it&#39;s open sign up</p>
           
           
 
           
           <div class="method-source-code" id="school_password_required-source">
-            <pre><span class="ruby-comment"># File app/models/school.rb, line 17</span>
+            <pre><span class="ruby-comment"># File app/models/school.rb, line 19</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">school_password_required</span>
   <span class="ruby-constant">Setting</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">key</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;require_school_password&quot;</span>).<span class="ruby-identifier">value</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;yes&quot;</span>
 <span class="ruby-keyword">end</span></pre>

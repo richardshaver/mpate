@@ -1,6 +1,7 @@
 module Resetter
 	extend ActiveSupport::Concern
 
+	# Choose redirect destinations based on current page. Page reloading
 	def reset
 		case params[:controller]
 			when "competitors"

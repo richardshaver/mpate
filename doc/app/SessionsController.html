@@ -134,7 +134,7 @@ screen</p>
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/sessions_controller.rb, line 9</span>
+            <pre><span class="ruby-comment"># File app/controllers/sessions_controller.rb, line 11</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
       <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span> = <span class="ruby-constant">Manager</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">user_name</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:user_name</span>])
               <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">user</span>
@@ -147,15 +147,12 @@ screen</p>
               <span class="ruby-ivar">@type</span> = <span class="ruby-string">&quot;school&quot;</span>
       <span class="ruby-keyword">end</span>
 
+  <span class="ruby-comment"># If we are logged in, keep login data as we navigate the website</span>
       <span class="ruby-keyword">if</span> <span class="ruby-ivar">@user</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">password</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:password</span>]
               <span class="ruby-identifier">session</span>[<span class="ruby-value">:user</span>] = <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">id</span>
               <span class="ruby-identifier">session</span>[<span class="ruby-value">:type</span>] = <span class="ruby-ivar">@type</span>
 
-    <span class="ruby-comment"># Room leaders may be set as taskmaster if they also have</span>
-    <span class="ruby-comment"># the ability to create and edit the tasks</span>
-    <span class="ruby-comment"># If they are not a taskmaster, then that room leader</span>
-    <span class="ruby-comment"># will not be able to manage the tasks</span>
-
+    <span class="ruby-comment"># Room leaders with the taskmaster security level need to be determined</span>
               <span class="ruby-keyword">if</span> <span class="ruby-ivar">@type</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;leader&quot;</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">security_level</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;taskmaster&quot;</span>
                       <span class="ruby-identifier">session</span>[<span class="ruby-value">:taskmaster</span>] = <span class="ruby-keyword">true</span>
               <span class="ruby-keyword">else</span>
@@ -196,7 +193,7 @@ screen</p>
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/sessions_controller.rb, line 44</span>
+            <pre><span class="ruby-comment"># File app/controllers/sessions_controller.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-identifier">session</span>[<span class="ruby-value">:user</span>] = <span class="ruby-keyword">nil</span>
   <span class="ruby-identifier">session</span>[<span class="ruby-value">:type</span>] = <span class="ruby-keyword">nil</span>
@@ -226,13 +223,13 @@ screen</p>
 
         <div class="method-description">
           
-          
+          <p>Renders the associated login form. Empty so used default.</p>
           
           
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/sessions_controller.rb, line 2</span>
+            <pre><span class="ruby-comment"># File app/controllers/sessions_controller.rb, line 4</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
