@@ -26,6 +26,7 @@
   </tbody>
 </table>
 <br>
+<!-- Manager is the only one able to download the archive csv, or to reset the database table -->
 <% if is_manager? %>
   <%= link_to "Download as CSV", schools_path(format: "csv"), class: "btn" %>
   <%= link_to "Reset Schools", reset_schools_path, method: :delete, confirm: "Are you sure?\nThis will also delete all competitors for this school.", class: "btn btn-delete" %>

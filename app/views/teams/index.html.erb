@@ -116,6 +116,7 @@
   <% end %>
 <% end %>
 <br>
+<!-- Manager is the only one able to download the archive csv, or to reset the database table -->
 <% if is_manager? %>
   <%= link_to "Setup Teams", setup_teams_path, class: "btn btn-new" %>
   <%= link_to "Download as CSV", teams_path(format: "csv"), class: "btn" %>

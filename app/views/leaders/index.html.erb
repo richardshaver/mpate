@@ -20,7 +20,7 @@
 </table>
 <br>
 
-<!-- Display the System Manager's options -->
+<!-- Manager is the only one able to download the archive csv, or to reset the database table -->
 <% if is_manager? %>
   <%= link_to "Download as CSV", leaders_path(format: "csv"), class: "btn" %>
   <%= link_to "Reset Leaders", reset_leaders_path, method: :delete, confirm: "Are you sure?", class: "btn btn-delete" %>

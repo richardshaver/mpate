@@ -25,6 +25,7 @@
   </tbody>
 </table>
 <br>
+<!-- Manager is the only one able to download the archive csv, or to reset the database table -->
 <% if is_manager? %>
   <%= link_to "Download as CSV", competitors_path(format: "csv"), class: "btn" %>
   <%= link_to "Download Badge CSV", badges_path(format: "csv"), class: "btn" %>
