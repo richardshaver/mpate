@@ -27,7 +27,7 @@
   </tbody>
 </table>
 <br>
-<<!-- Manager is the only one able to download the archive csv -->
-% if is_manager? %>
+<!-- Manager is the only one able to download the archive csv -->
+<% if is_manager? %>
   <%= link_to "Download as CSV", managers_path(format: "csv"), class: "btn" %>
 <% end %>
